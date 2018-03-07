@@ -1,0 +1,16 @@
+body{
+    background-color:dimgrey;
+}
+.panel-heading{
+    margin-bottom:0px;
+    padding-bottom:0px;
+}
+#sidebar-wrapper{
+
+    padding:0px;
+    list-style:none;
+    border-left:0px solid #ccc;
+    background-color:#2e353d;
+    color:white;
+    text-align: justify;
+}
