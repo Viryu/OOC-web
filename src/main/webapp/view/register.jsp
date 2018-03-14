@@ -7,26 +7,27 @@
             <div class="panel panel-default">
                 <div class="panel-heading">
                     <h3 class="panel-title">Register</h3>
+                    <h5 class="text-danger">${error_message}</h5>
                 </div>
                 <div class="panel-body">
-                    <form role="form">
+                    <form role="form" action="/register=newuser" method = "post">
                         <div class="row">
                             <div class="col-xs-6 col-sm-6 col-md-6">
                                 <div class="form-group">
-                                    <input type="text" name="first_name" id="first_name" class="form-control input-sm" placeholder="First Name">
+                                    <input type="text" name="first_name" id="first_name" value="${first_name}" class="form-control input-sm" placeholder="First Name">
                                 </div>
                             </div>
                             <div class="col-xs-6 col-sm-6 col-md-6">
                                 <div class="form-group">
-                                    <input type="text" name="last_name" id="last_name" class="form-control input-sm" placeholder="Last Name">
+                                    <input type="text" name="last_name" id="last_name" value="${last_name}" class="form-control input-sm" placeholder="Last Name">
                                 </div>
                             </div>
                         </div>
 
                         <div class="form-group">
-                            <input type="email" name="email" id="email" class="form-control input-sm" placeholder="Email Address">
-                            <input type="date" name="dob" id="dob" class="form-control input-sm">
-                            <input type="text" name="phone_number" id="phone_number" class="form-control input-sm" placeholder ="Phone Number">
+                            <input type="email" name="email" id="email" value="${email}" class="form-control input-sm" placeholder="Email Address">
+                            <input type="date" name="dob" id="dob" value="${dob}"  class="form-control input-sm">
+                            <input type="text" name="phone_number" id="phone_number" value="${phone_number}" class="form-control input-sm" placeholder ="Phone Number">
                         </div>
 
                         <div class="row">

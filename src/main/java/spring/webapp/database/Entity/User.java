@@ -3,7 +3,7 @@ package spring.webapp.database.Entity;
 import javax.persistence.*;
 
 @Entity
-public class Account {
+public class User {
     @Id
     @GeneratedValue(strategy= GenerationType.AUTO)
     private Integer id;
@@ -17,9 +17,9 @@ public class Account {
     @Column(columnDefinition="char(10)", nullable=false)
     private String role;
 
-    protected Account() {}
+    protected User() {}
 
-    public Account(String email, String password, String role)  {
+    public User(String email, String password, String role)  {
         this.email = email;
         this.password = password;
         this.role = role;
