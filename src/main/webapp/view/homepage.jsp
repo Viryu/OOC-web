@@ -149,7 +149,12 @@
     <div class="collapse navbar-collapse" id="app-navbar-collapse">
         <!-- Left Side Of Navbar -->
         <ul class="nav navbar-nav">
-            <li><a href="D:/Java/web/home.html">Home</a></li>
+            <li><img src="htmldata/img/logo.jpg" alt="Logo" style="width:100px;height:50px"></li>
+            <li><a href="/">Home</a></li>
+        </ul>
+        <ul class="nav navbar-nav navbar-right">
+            <li><a href="/login">Login</a></li>
+            <li><a href="/register">Register</a></li>
         </ul>
     </div>
 </head>

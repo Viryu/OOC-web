@@ -14,7 +14,7 @@
                 <form role="form">
                     <fieldset>
                         <div class="form-group">
-                            <input class="form-control" placeholder="E-mail" name="email" type="email" autofocus="">
+                            <input class="form-control" placeholder="E-mail" name="email" type="email" th:field="">
                         </div>
                         <div class="form-group">
                             <input class="form-control" placeholder="Password" name="password" type="password" value="">
@@ -23,6 +23,9 @@
                             <label>
                                 <input name="remember" type="checkbox" value="Remember Me">Remember Me
                             </label>
+                        </div>
+                        <div class="form-group">
+                            <li><a href="/register">Dont have an account yet? Register</a></li>
                         </div>
                         <!-- Change this to a button or input when using this as a form -->
                         <a href="javascript:;" class="btn btn-sm btn-success">Login</a>
