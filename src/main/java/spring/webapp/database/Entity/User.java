@@ -1,5 +1,7 @@
 package spring.webapp.database.Entity;
 
+import org.hibernate.validator.constraints.*;
+
 import javax.persistence.*;
 
 @Entity
@@ -7,7 +9,6 @@ public class User {
     @Id
     @GeneratedValue(strategy= GenerationType.AUTO)
     private Integer id;
-
     @Column(length=60, unique=true, nullable=false)
     private String email;
 

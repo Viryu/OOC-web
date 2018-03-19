@@ -91,7 +91,7 @@ public class RegisterController {
             if (token == null || token.isEmpty()) return tokenPrintable + " is missing";
         }
         try {
-            Integer.parseInt(tokens.get("Phone number"));
+            Long.parseLong(tokens.get("Phone number").trim());
         } catch(NumberFormatException e) {
             return "Phone numbers must contain only numbers";
         }

@@ -1,6 +1,6 @@
 package spring.webapp.database.Entity;
 
-import javax.persistence.Column;
+import javax.persistence.*;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 
@@ -18,8 +18,8 @@ public class UserInfo {
     @Column(columnDefinition="date", nullable=false)
     private String dob;
 
-    @Column(columnDefinition="int(20)", nullable=false)
-    private Integer phoneNumber;
+    @Column(columnDefinition="varchar(20)", nullable=false)
+    private String phoneNumber;
 
     protected UserInfo() {}
 
@@ -28,7 +28,7 @@ public class UserInfo {
         this.firstName = firstName;
         this.lastName = lastName;
         this.dob = dob;
-        this.phoneNumber = Integer.parseInt(phoneNumber);
+        this.phoneNumber = phoneNumber;
     }
 
     public Integer getId() {
@@ -63,11 +63,11 @@ public class UserInfo {
         this.dob = dob;
     }
 
-    public int getPhoneNumber() {
+    public String getPhoneNumber() {
         return phoneNumber;
     }
 
-    public void setPhoneNumber(int phoneNumber) {
+    public void setPhoneNumber(String phoneNumber) {
         this.phoneNumber = phoneNumber;
     }
 

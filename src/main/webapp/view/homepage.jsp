@@ -226,8 +226,6 @@
                             <div class="wizard-navigation">
                                 <ul>
                                     <li><a href="#details" data-toggle="tab">Airplane</a></li>
-                                    <li><a href="#captain" data-toggle="tab">Bus</a></li>
-                                    <li><a href="#description" data-toggle="tab">Boat</a></li>
                                 </ul>
                             </div>
 
@@ -241,93 +239,17 @@
                                                         <input id="passengeramt" name="passengeramt" type="number" placeholder="Passenger Amount" class="form-control input-md">
                                                         <label>From</label>
                                                         <input id="frombox" name="frombox" type="text" placeholder="From" class="form-control input-md">
+                                                        <label>Destination</label>
+                                                        <input id="destinationbox" name="destinationbox" type="text" class="form-control input-md">
                                                         <label>Flight Date</label>
                                                         <div class="form-group label-floating">
                                                         <input id="date" name="date" type="date" placeholder="Preferred Date" class="form-control input-md">
                                                         </div>
+                                                    </span>
                                             </div>
-                                        </div>
-                                        <div class="col-sm-6">
-                                            <div class="input-group">
-                                                    <span class="input-group-addon">
-                                                        <label>Infant Passenger Amount</label>
-                                                        <input id="passengeramt" name="passengeramt" type="number" placeholder="Passenger Amount" class="form-control input-md">
-                                                        <label>To</label>
-                                                        <input id="tobox" name="tobox" type="text" placeholder="To" class="form-control input-md">
-                                            </div>
-                                        </div>
+                                         </div>
                                     </div>
                                 </div>
-                                <div class="tab-pane" id="captain">
-                                    <div class="row">
-                                        <div class="col-sm-6">
-                                            <div class="input-group">
-                                                    <span class="input-group-addon">
-                                                        <label>Passenger Amount</label>
-                                                        <input id="passengeramt" name="passengeramt" type="number" placeholder="Passenger Amount" class="form-control input-md">
-                                                        <label>From</label>
-                                                        <input id="frombox" name="frombox" type="text" placeholder="From" class="form-control input-md">
-                                                        <label>Departure Date</label>
-                                                        <div class="form-group label-floating">
-                                                        <input id="date" name="date" type="date" placeholder="Preferred Date" class="form-control input-md">
-                                                        </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-sm-6">
-                                            <div class="input-group">
-                                                    <span class="input-group-addon">
-                                                        <label>To</label>
-                                                        <input id="tobox" name="tobox" type="text" placeholder="To" class="form-control input-md">
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="tab-pane" id="description">
-                                    <div class="row">
-                                        <div class="col-sm-6">
-                                            <div class="input-group">
-                                                    <span class="input-group-addon">
-                                                        <label>Passenger Amount</label>
-                                                        <input id="passengeramt" name="passengeramt" type="number" placeholder="Passenger Amount" class="form-control input-md">
-                                                        <label>From</label>
-                                                        <input id="frombox" name="frombox" type="text" placeholder="From" class="form-control input-md">
-                                                        <label>Departure Date</label>
-                                                        <div class="form-group label-floating">
-                                                        <input id="date" name="date" type="date" placeholder="Preferred Date" class="form-control input-md">
-                                                        </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-sm-6">
-                                            <div class="input-group">
-                                                    <span class="input-group-addon">
-                                                        <label>To</label>
-                                                        <input id="tobox" name="tobox" type="text" placeholder="To" class="form-control input-md">
-                                            </div>
-                                        </div>
-
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="wizard-footer">
-                                <div class="pull-right">
-                                    <input type='button' class='btn btn-next btn-fill btn-danger btn-wd' name='next' value='Next' />
-                                    <input type='button' class='btn btn-finish btn-fill btn-danger btn-wd' name='finish' value='Finish' />
-                                </div>
-                                <!-- <div class="pull-left">
-                                    <input type='button' class='btn btn-previous btn-fill btn-default btn-wd' name='previous' value='Previous' />
-
-                                    <div class="footer-checkbox">
-                                        <div class="col-sm-12">
-                                          <div class="checkbox">
-                                              <label>
-                                                  <input type="checkbox" name="optionsCheckboxes">
-                                              </label>
-                                              Subscribe to our newsletter
-                                          </div>
-                                      </div>
-                                    </div>
-                                </div> -->
-                                <div class="clearfix"></div>
                             </div>
                         </form>
                     </div>
@@ -348,7 +270,7 @@
                 </div>
                 <div class="hotbody">
                     <div class="square">
-                        <img src="D:/College Stuffs/6th Term (Abroad)/Object Oriented Concept/Final Project OOC/Web View/htmldata/img/4.jpg">
+                        <img src="htmldata/img/4.jpg">
                     </div>
 
 

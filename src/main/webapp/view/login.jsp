@@ -9,15 +9,16 @@
         <div class="login-panel panel panel-default">
             <div class="panel-heading">
                 <h3 class="panel-title">Sign In</h3>
+                <h5 class="text-danger">${errMsg}</h5>
             </div>
             <div class="panel-body">
-                <form role="form">
+                <form role="form" method="post" action="/login=new">
                     <fieldset>
                         <div class="form-group">
-                            <input class="form-control" placeholder="E-mail" name="email" type="email" th:field="">
+                            <input class="form-control" placeholder="E-mail" name="email" type="email" value="${email}">
                         </div>
                         <div class="form-group">
-                            <input class="form-control" placeholder="Password" name="password" type="password" value="">
+                            <input class="form-control" placeholder="Password" name="password" type="password" value="${password}">
                         </div>
                         <div class="checkbox">
                             <label>
@@ -28,7 +29,7 @@
                             <li><a href="/register">Dont have an account yet? Register</a></li>
                         </div>
                         <!-- Change this to a button or input when using this as a form -->
-                        <a href="javascript:;" class="btn btn-sm btn-success">Login</a>
+                        <input type="submit" value="Login" class="btn btn-info btn-block">
                     </fieldset>
                 </form>
             </div>

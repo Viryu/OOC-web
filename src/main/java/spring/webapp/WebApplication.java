@@ -23,4 +23,6 @@ public class WebApplication {
         resolver.setViewClass(JstlView.class);
         return resolver;
     }
+
+
 }
