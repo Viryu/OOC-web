@@ -33,6 +33,13 @@ public class ModeratorController {
     public String show(Map<String,Object> model){
         return "moderatorpage";
     }
+
+    @GetMapping("/moderatormenu=manageuser")
+    public String manageUser(Model model) {
+        model.addAttribute("userinfolist", ur.findAll());
+        return "moderatorpage";
+    }
+
     @PostMapping("/moderatorinsert")
     public String registerAdmin(Model model,
                                 @RequestParam(value="first_name") String firstName,
@@ -41,22 +48,16 @@ public class ModeratorController {
                                 @RequestParam(value="email")String email,
                                 @RequestParam(value="password")String password,
                                 @RequestParam(value="dob")String dob){
-        for (User user :  ur.findAll()) {
-            System.out.println("Begin of list");
-            System.out.println(user.getEmail());
-        }
-        model.addAttribute("userinfolist", ur.findAll());
-        //System.out.println(ur.findOneByEmail("test1@email.com"));
         setSession(model,firstName,lastName,email,dob,phoneNumber,password);
         Map<String,String> tokens = paramsToMap();
         String errMessage = validate(tokens);
         if (!errMessage.equals("OK")) {
             model.addAttribute("error_message", errMessage);
-            return "moderatormenu";
+            return "moderatorpage";
         }
         else {
             addUserToDatabase();
-            return "redirect:/moderatormenu";
+            return "moderatorpage";
         }
 
     }

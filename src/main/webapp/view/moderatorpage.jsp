@@ -12,7 +12,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- Bootstrap core CSS -->
 </head>
+
 <body>
+<<script type="text/javascript">
+    $(document).ready(onLoad);
+</script>
 <nav class="navbar navbar-default">
     <div class="container">
         <div class="navbar-header">
@@ -22,7 +26,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <img src="htmldata/img/logo.jpg" alt="logo"style="Height: 35px;width: 100px;">
+            <img src="htmldata/img/logo.jpg" alt="logo" style="Height: 35px;width: 100px;">
             <%--<a class="navbar-brand" href="#">WeTravel</a>--%>
         </div>
         <div id="navbar" class="collapse navbar-collapse">
@@ -94,7 +98,7 @@
                     </div>
                     <div class="panel-body">
                         <form action="/moderatorinsert" method="post">
-                            <h4>First Name : </h4><input name="first_name" type="text"id="first_name" value="${first_name}">
+                            <h4>First Name : </h4><input name="first_name" type="text" id="first_name" value="${first_name}">
                             <h4>Last Name : </h4><input name="last_name" type="text" id="last_name" value="${last_name}">
                             <h4>Phone Number : </h4><input name="phone_number" type="text" id="phone_number" value="${phone_number}">
                             <h4>Email : </h4><input name="email" type="text" id="email" value="${email}">
@@ -110,16 +114,29 @@
                         <h3 class="panel-title">Manage User</h3>
                     </div>
                     <div class="panel-body">
-                        <c:forEach items="${userinfolist}">
-                            <tr>
-                                <td>${userinfolist}</td>
-                                <%--<td><c:out value="${userinfo.firstName}"></c:out></td>--%>
-                                <%--<td><c:out value="${userinfo.lastName}"></c:out></td>--%>
-                            </tr>
-                        </c:forEach>
+                        <div class="container">
+                            <table class="table table-hover">
+                                <thead>
+                                    <tr>
+                                        <th>Email</th>
+                                        <th>Password</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <c:forEach var="userInfo" items="${userinfolist}">
+                                        <tr>
+                                            <td>${userInfo.email}</td>
+                                            <td>${userInfo.password}</td>
+                                        </tr>
+                                    </c:forEach>
+                                </tbody>
+                            </table>
+                        </div>
                     </div>
                 </div>
-
-
+            </div>
+        </div>
+    </div>
+</section>
 </body>
 </html>
