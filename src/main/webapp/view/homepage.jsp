@@ -1,3 +1,4 @@
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 <link href="htmldata/css/bootstrap.css" rel="stylesheet" id="bootstrap-css">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.3/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.6/js/bootstrap.min.js"></script>
@@ -153,8 +154,18 @@
             <li><a href="/">Home</a></li>
         </ul>
         <ul class="nav navbar-nav navbar-right">
-            <li><a href="/login">Login</a></li>
-            <li><a href="/register">Register</a></li>
+            <sec:authorize access="isAuthenticated()">
+                <li>
+                    <form action="/logout" id="logout" method="post">
+                    <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
+                    <input type="submit" value="Logout" class="btn btn-danger btn-block">
+                    </form>
+                </li>
+            </sec:authorize>
+            <sec:authorize access="isAnonymous()">
+                <li><a href="/login" class="btn btn-success btn-block">Login</a></li>
+                <li><a href="/register" class="btn btn-warning btn-block">Register</a></li>
+            </sec:authorize>
         </ul>
     </div>
 </head>

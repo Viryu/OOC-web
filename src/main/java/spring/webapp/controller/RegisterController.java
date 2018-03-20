@@ -48,7 +48,7 @@ public class RegisterController {
         Map<String,String> tokens = paramsToMap();
         String errorMessage = validate(tokens);
         if (!errorMessage.equals("OK")) {
-            model.addAttribute("error_message", errorMessage);
+            model.addAttribute("error_register", errorMessage);
             return "register";
         }
         else {
@@ -107,7 +107,7 @@ public class RegisterController {
 
     @ExceptionHandler({SQLException.class,DataIntegrityViolationException.class})
     private String duplicateEmail(Model model) {
-        model.addAttribute("error_message", "Email is already in used");
+        model.addAttribute("error_register", "Email is already in used");
         return "register";
     }
 }

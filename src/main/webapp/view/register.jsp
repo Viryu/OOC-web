@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <link rel="stylesheet" type="text/css" href="htmldata\css\bootstrap.css">
 <link href="htmldata\css2\register.css" rel="stylesheet" id="bootstrap-css">
 <script src="htmldata\js\bootstrap.js"></script>
@@ -7,7 +8,9 @@
             <div class="panel panel-default">
                 <div class="panel-heading">
                     <h3 class="panel-title">Register</h3>
-                    <h5 class="text-danger">${error_message}</h5>
+                    <c:if test="${not empty error_register}">
+                        <h5 class="text-danger">${error_register}</h5>
+                    </c:if>
                 </div>
                 <div class="panel-body">
                     <form role="form" action="/register=newuser" method = "post">
@@ -42,7 +45,7 @@
                                 </div>
                             </div>
                         </div>
-
+                        <input class="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
                         <input type="submit" value="Register" class="btn btn-info btn-block">
 
                     </form>

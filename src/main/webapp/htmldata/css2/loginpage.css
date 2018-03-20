@@ -2,3 +2,9 @@
 	margin-top: 10%;
 	margin-left: 35%;
 }
+
+.alert {
+	height: 30px;
+	line-height:30px;
+	padding:0 10px;
+}
