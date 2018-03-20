@@ -1,20 +1,14 @@
 package spring.webapp.controller;
 
-import org.joda.time.DateTimeZone;
-import org.omg.CORBA.Request;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-import spring.webapp.database.Entity.User;
-import spring.webapp.database.Entity.UserInfo;
-import spring.webapp.database.Repository.UserInfoRepository;
-import spring.webapp.database.Repository.UserRepository;
+import spring.webapp.database.entity.User;
+import spring.webapp.database.entity.UserInfo;
+import spring.webapp.database.repository.UserInfoRepository;
+import spring.webapp.database.repository.UserRepository;
 
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.time.LocalDate;
-import java.time.LocalTime;
 import java.util.*;
 
 @Controller

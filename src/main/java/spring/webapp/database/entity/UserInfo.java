@@ -1,4 +1,4 @@
-package spring.webapp.database.Entity;
+package spring.webapp.database.entity;
 
 import javax.persistence.*;
 import javax.persistence.Entity;

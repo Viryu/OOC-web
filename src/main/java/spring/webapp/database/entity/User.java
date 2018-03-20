@@ -1,6 +1,4 @@
-package spring.webapp.database.Entity;
-
-import org.hibernate.validator.constraints.*;
+package spring.webapp.database.entity;
 
 import javax.persistence.*;
 

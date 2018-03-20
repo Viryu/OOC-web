@@ -1,4 +1,4 @@
-package spring.webapp.Security;
+package spring.webapp.security;
 
 import org.springframework.security.access.AccessDeniedException;
 import org.springframework.security.web.access.AccessDeniedHandlerImpl;
