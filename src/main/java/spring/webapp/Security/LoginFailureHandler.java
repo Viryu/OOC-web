@@ -24,7 +24,7 @@ public class LoginFailureHandler implements AuthenticationFailureHandler {
         else if (request.getParameter("password").isEmpty()) errorMessage = "Please type a password";
         else if (invalidInputExceptions.contains(exception.getClass())) errorMessage = "Invalid username or password";
         else errorMessage = exception.getClass().toString();
-
+        
         if (!errorMessage.isEmpty()) request.getSession().setAttribute("error_login", errorMessage);
         response.sendRedirect("/login?error");
     }
