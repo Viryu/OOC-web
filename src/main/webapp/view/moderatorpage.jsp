@@ -114,24 +114,22 @@
                         <h3 class="panel-title">Manage User</h3>
                     </div>
                     <div class="panel-body">
-                        <div class="container">
-                            <table class="table table-hover">
-                                <thead>
-                                    <tr>
-                                        <th>Email</th>
-                                        <th>Password</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <c:forEach var="userInfo" items="${userinfolist}">
-                                        <tr>
-                                            <td>${userInfo.email}</td>
-                                            <td>${userInfo.password}</td>
-                                        </tr>
-                                    </c:forEach>
-                                </tbody>
-                            </table>
-                        </div>
+                        <table class="table table-hover">
+                            <thead>
+                                <tr>
+                                    <th>Email</th>
+                                    <th>Password</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                            <c:forEach var="userInfo" items="${userinfolist}">
+                                <tr>
+                                    <td>${userInfo.email}</td>
+                                    <td>${userInfo.password}</td>
+                                </tr>
+                            </c:forEach>
+                            </tbody>
+                        </table>
                     </div>
                 </div>
             </div>
