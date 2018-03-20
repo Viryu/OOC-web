@@ -2,6 +2,11 @@ package spring.webapp.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.web.authentication.WebAuthenticationDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -13,8 +18,10 @@ import spring.webapp.database.Entity.UserInfo;
 import spring.webapp.database.Repository.UserInfoRepository;
 import spring.webapp.database.Repository.UserRepository;
 
+import javax.servlet.http.HttpServletRequest;
 import java.sql.SQLException;
-import java.util.*;
+import java.util.LinkedHashMap;
+import java.util.Map;
 
 @Controller
 public class RegisterController {
@@ -29,6 +36,8 @@ public class RegisterController {
     private UserRepository userRepository;
     @Autowired
     private UserInfoRepository userInfoRepository;
+    @Autowired
+    private AuthenticationManager authenticationManager;
 
     @GetMapping("/register")
     public String registerDefault() {
@@ -36,7 +45,7 @@ public class RegisterController {
     }
 
     @PostMapping("/register=newuser")
-    public String registerUser(Model model,
+    public String registerUser(Model model, HttpServletRequest request,
                                 @RequestParam(value = "first_name") String firstName,
                                 @RequestParam(value = "last_name") String lastName,
                                 @RequestParam(value = "email") String email,
@@ -53,6 +62,7 @@ public class RegisterController {
         }
         else {
             addUserToDatabase();
+            loginWithAuthManager(request, email, password);
             return "redirect:/";
         }
     }
@@ -103,6 +113,14 @@ public class RegisterController {
         userRepository.save(new User(email, password, "customer"));
         Integer userID = userRepository.findOneByEmail(email).getId();
         userInfoRepository.save(new UserInfo(userID, firstName, lastName, dob, phoneNumber));
+    }
+
+    private void loginWithAuthManager(HttpServletRequest request, String username, String password) {
+        UsernamePasswordAuthenticationToken authToken = new UsernamePasswordAuthenticationToken(username, password);
+        authToken.setDetails(new WebAuthenticationDetails(request));
+        Authentication authentication = authenticationManager.authenticate(authToken);
+
+        SecurityContextHolder.getContext().setAuthentication(authentication);
     }
 
     @ExceptionHandler({SQLException.class,DataIntegrityViolationException.class})
