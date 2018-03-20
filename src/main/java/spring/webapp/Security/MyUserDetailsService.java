@@ -27,7 +27,7 @@ public class MyUserDetailsService implements UserDetailsService {
     @Override
     public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
         User user = userRepository.findOneByEmail(email);
-        if (user == null) throw new UsernameNotFoundException("");
+        if (user == null) throw new UsernameNotFoundException(email);
         String password = user.getPassword();
         List<GrantedAuthority> auth = AuthorityUtils.commaSeparatedStringToAuthorityList("ROLE_" + user.getRole());
         /*for (GrantedAuthority a : auth) {
