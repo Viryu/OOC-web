@@ -1,8 +1,8 @@
-package spring.webapp.database.Repository;
+package spring.webapp.database.repository;
 
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
-import spring.webapp.database.Entity.User;
+import spring.webapp.database.entity.User;
 
 import java.util.List;
 

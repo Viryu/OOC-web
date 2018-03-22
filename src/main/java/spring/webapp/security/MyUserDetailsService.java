@@ -1,4 +1,4 @@
-package spring.webapp.Security;
+package spring.webapp.security;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
@@ -8,8 +8,8 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import spring.webapp.database.Entity.User;
-import spring.webapp.database.Repository.UserRepository;
+import spring.webapp.database.entity.User;
+import spring.webapp.database.repository.UserRepository;
 
 import java.util.List;
 

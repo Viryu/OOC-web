@@ -13,10 +13,10 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import spring.webapp.database.Entity.User;
-import spring.webapp.database.Entity.UserInfo;
-import spring.webapp.database.Repository.UserInfoRepository;
-import spring.webapp.database.Repository.UserRepository;
+import spring.webapp.database.entity.User;
+import spring.webapp.database.entity.UserInfo;
+import spring.webapp.database.repository.UserInfoRepository;
+import spring.webapp.database.repository.UserRepository;
 
 import javax.servlet.http.HttpServletRequest;
 import java.sql.SQLException;
