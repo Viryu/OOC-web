@@ -11,8 +11,12 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- Bootstrap core CSS -->
+
 </head>
 <body>
+<script type="text/javascript">
+    $(document).ready(onLoadAdmin());
+</script>
 <nav class="navbar navbar-default">
     <div class="container">
         <div class="navbar-header">
@@ -73,7 +77,7 @@
                 <div class="list-group">
                     <button class="list-group-item active main-color-bg" onclick="dashboardFunction()"><span class="glyphicon glyphicon-cog" aria-hidden="true"></span> Dashboard</button>
                     <button class="list-group-item" onclick="newItemFunction()"><span class="glyphicon glyphicon-plane" aria-hidden="true"></span> Add New Flight</button>
-                    <button class="list-group-item" onclick="manageUserFunction()"><span class="glyphicon glyphicon-user" aria-hidden="true"></span> Manage Flight</button>
+                    <button class="list-group-item" onclick="manageFlightFunction()"><span class="glyphicon glyphicon-user" aria-hidden="true"></span> Manage Flight</button>
                 </div>
 
             </div>
@@ -93,7 +97,7 @@
                         <h3 class="panel-title">Add New Flight</h3>
                     </div>
                     <div class="panel-body">
-                        <form action="/moderatorinsert" method="post">
+                        <form action="/insertitem" method="post">
                             <h4>Flight ID : </h4><input name="id" type="text"id="id" value="${id}">
                             <h4>From : </h4><input name="startdestination" type="text" id="startdestination" value="${startdestination}">
                             <h4>To : </h4><input name="destination" type="text" id="destination" value="${destination}">
@@ -109,13 +113,7 @@
                         <h3 class="panel-title">Manage Flight</h3>
                     </div>
                     <div class="panel-body">
-                        <%--<c:forEach items="userinfolist" var="userinfo">--%>
-                        <%--<tr>--%>
-                        <%--<td><c:out value="${userinfo.id}"></c:out></td>--%>
-                        <%--<td><c:out value="${userinfo.firstName}"></c:out></td>--%>
-                        <%--<td><c:out value="${userinfo.lastName}"></c:out></td>--%>
-                        <%--</tr>--%>
-                        <%--</c:forEach>--%>
+
                     </div>
                 </div>
             </div>

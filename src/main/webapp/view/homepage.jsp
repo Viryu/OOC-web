@@ -281,7 +281,7 @@
                 </div>
                 <div class="hotbody">
                     <div class="square">
-                        <img src="htmldata/img/4.jpg">
+                        <img src="htmldata/img/4.JPG">
                     </div>
 
 

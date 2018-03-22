@@ -11,6 +11,11 @@ function manageUserFunction() {
     window.location.href = '/moderatormenu=manageuser';
 }
 
+function manageFlightFunction(){
+    localStorage.setItem('showFlight','true');
+    window.location.href ='/adminpage=showflight';
+}
+
 function showUserFunction() {
     var x = document.getElementById("newItemPanel");
     var y = document.getElementById("manageUserPanel");
@@ -29,10 +34,21 @@ function dashboardFunction(){
     z.style.display="block";
 }
 
+function onLoadAdmin(){
+    if(window.location.href.indexOf("adminpage=showflight")<=-1){
+        if(localStorage.getItem("showFlight")!==null){
+            localStorage.removeItem('showFlight');
+        }
+    }
+    if(localStorage.getItem("showFlight")==='true'){
+        showUserFunction();
+    }
+}
 function onLoad() {
     if (window.location.href.indexOf("moderatormenu=manageuser") <= -1) {
         if (localStorage.getItem("showManageUser") !== null) localStorage.removeItem('showManageUser');
     }
+
     if (localStorage.getItem("showManageUser") === 'true') {
         showUserFunction();
     }

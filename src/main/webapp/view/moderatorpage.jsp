@@ -104,6 +104,7 @@
                             <h4>Email : </h4><input name="email" type="text" id="email" value="${email}">
                             <h4>Password : </h4><input name="password" type="password" id="password" value="${password}">
                             <h4>DOB : </h4><input name="dob" type="date" id="dob" value="${dob}">
+                            <input class="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
                             <h4></h4><input type="submit">
                         </form>
                     </div>
@@ -119,6 +120,7 @@
                                 <tr>
                                     <th>Email</th>
                                     <th>Password</th>
+                                    <th>Role</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -126,6 +128,7 @@
                                 <tr>
                                     <td>${userInfo.email}</td>
                                     <td>${userInfo.password}</td>
+                                    <td>${userInfo.role}</td>
                                 </tr>
                             </c:forEach>
                             </tbody>
