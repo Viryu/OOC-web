@@ -6,6 +6,7 @@ import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.authentication.WebAuthenticationDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -38,6 +39,8 @@ public class RegisterController {
     private UserInfoRepository userInfoRepository;
     @Autowired
     private AuthenticationManager authenticationManager;
+    @Autowired
+    private PasswordEncoder passwordEncoder;
 
     @GetMapping("/register")
     public String registerDefault() {
@@ -110,7 +113,8 @@ public class RegisterController {
     }
 
     private void addUserToDatabase() {
-        userRepository.save(new User(email, password, "customer"));
+        String hashedPassword = passwordEncoder.encode(password);
+        userRepository.save(new User(email, hashedPassword, "customer"));
         Integer userID = userRepository.findOneByEmail(email).getId();
         userInfoRepository.save(new UserInfo(userID, firstName, lastName, dob, phoneNumber));
     }

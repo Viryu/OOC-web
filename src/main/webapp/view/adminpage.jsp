@@ -27,7 +27,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <img src="htmldata/img/logo.jpg" alt="logo"style="Height: 35px;width: 100px;">
+            <img src="htmldata/img/logo.jpg" alt="logo" style="Height: 35px;width: 100px;">
             <%--<a class="navbar-brand" href="#">WeTravel</a>--%>
         </div>
         <div id="navbar" class="collapse navbar-collapse">
@@ -52,7 +52,7 @@
     <div class="container">
         <div class="row">
             <div class="col-md-10">
-                <h1><span class="glyphicon glyphicon-cog" aria-hidden="true"></span> Admin <small>Manage your sales</small></h1>
+                <h1><span class="glyphicon glyphicon-cog" aria-hidden="true"></span> ${airline} <small>Manage your sales</small></h1>
             </div>
             <div class="col-md-2">
 
@@ -77,7 +77,7 @@
             <div class="col-md-3">
                 <div class="list-group">
                     <button class="list-group-item" onclick="newItemFunction()"><span class="glyphicon glyphicon-plane" aria-hidden="true"></span> Add New Flight</button>
-                    <button class="list-group-item" onclick="manageFlightFunction()"><span class="glyphicon glyphicon-user" aria-hidden="true"></span> Manage Flight</button>
+                    <button class="list-group-item" onclick="showFlightFunction()"><span class="glyphicon glyphicon-user" aria-hidden="true"></span> Manage Flight</button>
                 </div>
 
             </div>
@@ -90,8 +90,8 @@
                     </div>
                     <div class="panel-body">
                         <form action="/admininsert" method="post">
-                            <h4>Airline : </h4><input type="text" id="airline" value="${airline}">
-                            <h4>Flight No : </h4><input type="text" id="flightno" value="${flightno}">
+                            <h4>Airline : </h4><input name="airline" type="text" id="airline" value="${airline}" disabled>
+                            <h4>Flight No : </h4><input name="flightno" type="text" id="flightno" value="${flightno}">
                             <h4>From : </h4><input name="startdestination" type="text" id="startdestination" value="${startdestination}">
                             <h4>To : </h4><input name="enddestination" type="text" id="enddestination" value="${enddestination}">
                             <h4>Date of Departure : </h4><input name="departuredate" type="date" id="departuredate" value="${departuredate}">
@@ -99,7 +99,7 @@
                             <h4>Arrival Date : </h4><input name="arrivaldate" type="date" id="arrivaldate" value="${arrivaldate}">
                             <h4>Arrival Time : </h4><input type="time" name="arrivaltime" value="${arrivaltime}">
                             <h4>Seats : </h4><input name="seatleft" type="number" id="seats" value="${seatleft}">
-                            <h4>Price : </h4><input type="text" id="price" value="${price}">
+                            <h4>Price : </h4><input name="price" type="text" id="price" value="${price}">
                             <input class="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
                             <h4></h4><input type="submit">
                         </form>
@@ -130,7 +130,7 @@
                             <tbody>
                             <c:forEach var="flight" items="${flights}">
                                 <tr>
-                                    <td>${flight.ariline}</td>
+                                    <td>${flight.airline}</td>
                                     <td>${flight.flightno}</td>
                                     <td>${flight.startdestination}</td>
                                     <td>${flight.enddestination}</td>

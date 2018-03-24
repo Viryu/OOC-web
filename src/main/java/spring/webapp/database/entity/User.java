@@ -10,7 +10,7 @@ public class User {
     @Column(length=60, unique=true, nullable=false)
     private String email;
 
-    @Column(length=20, nullable=false)
+    @Column(length=60, nullable=false)
     private String password;
 
     @Column(columnDefinition="char(10)", nullable=false)

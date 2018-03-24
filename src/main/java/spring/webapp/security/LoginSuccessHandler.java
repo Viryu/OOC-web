@@ -23,7 +23,11 @@ public class LoginSuccessHandler implements AuthenticationSuccessHandler {
             redirectStrategy.sendRedirect(request, response, targetURL);
         }
         else {
-            redirectStrategy.sendRedirect(request, response, "/");
+            if (authentication.getAuthorities().toArray()[0].toString().equals("ROLE_admin")) {
+                redirectStrategy.sendRedirect(request, response, "/adminpage");
+            } else {
+                redirectStrategy.sendRedirect(request, response, "/");
+            }
         }
     }
 }
