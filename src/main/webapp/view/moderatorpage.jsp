@@ -104,6 +104,7 @@
                             <h4>Email : </h4><input name="email" type="text" id="email" value="${email}">
                             <h4>Password : </h4><input name="password" type="password" id="password" value="${password}">
                             <h4>DOB : </h4><input name="dob" type="date" id="dob" value="${dob}">
+                            <h4>Airline : </h4><input type="text" name="airline" id="airline" value="${airline}">
                             <input class="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
                             <h4></h4><input type="submit">
                         </form>
