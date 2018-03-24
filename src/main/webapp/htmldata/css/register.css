@@ -1,5 +1,6 @@
 body{
-    background-color: #8a6d3b;
+    bbackground-image: url("D:/College Stuffs/6th Term (Abroad)/Object Oriented Concept/Final Project OOC/Web View/TestWebPage/htmldata/img/registerbackground");
+    background-size: cover;
 }
 
 .panel-default > .panel-heading {

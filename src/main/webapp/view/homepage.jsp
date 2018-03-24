@@ -150,7 +150,7 @@
     <div class="collapse navbar-collapse" id="app-navbar-collapse">
         <!-- Left Side Of Navbar -->
         <ul class="nav navbar-nav">
-            <li><img src="htmldata/img/logo.jpg" alt="Logo" style="width:100px;height:50px"></li>
+            <li><img src="htmldata/img/logo.png" alt="Logo" style="width:100px;height:50px"></li>
             <li><a href="/">Home</a></li>
         </ul>
         <ul class="nav navbar-nav navbar-right">
@@ -217,88 +217,13 @@
         </div>
     </div>
 </section>
-<section>
-
-    <!--   Big container   -->
-    <div class="container">
-        <div class="row">
-            <div class="col-sm-8 col-sm-offset-2">
-                <!-- Wizard container -->
-                <div class="wizard-container">
-                    <div class="card wizard-card" data-color="blue" id="wizard">
-                        <form action="" method="">
-                            <!--        You can switch " data-color="blue" "  with one of the next bright colors: "green", "orange", "red", "purple"             -->
-                            <div class="wizard-header">
-                                <h3 class="wizard-title">
-                                    Order a Ticket
-                                </h3>
-                                <h5>Order your transportation ticket right here!</h5>
-                            </div>
-                            <div class="wizard-navigation">
-                                <ul>
-                                    <li><a href="#details" data-toggle="tab">Airplane</a></li>
-                                </ul>
-                            </div>
-
-                            <div class="tab-content">
-                                <div class="tab-pane" id="details">
-                                    <div class="row">
-                                        <div class="col-sm-6">
-                                            <div class="input-group">
-                                                    <span class="input-group-addon">
-                                                        <label>Adult Passenger Amount</label>
-                                                        <input id="passengeramt" name="passengeramt" type="number" placeholder="Passenger Amount" class="form-control input-md">
-                                                        <label>From</label>
-                                                        <input id="frombox" name="frombox" type="text" placeholder="From" class="form-control input-md">
-                                                        <label>Destination</label>
-                                                        <input id="destinationbox" name="destinationbox" type="text" class="form-control input-md">
-                                                        <label>Flight Date</label>
-                                                        <div class="form-group label-floating">
-                                                        <input id="date" name="date" type="date" placeholder="Preferred Date" class="form-control input-md">
-                                                        </div>
-                                                    </span>
-                                            </div>
-                                         </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </form>
-                    </div>
-                </div> <!-- wizard container -->
-            </div>
-        </div> <!-- row -->
-    </div> <!--  big container -->
-
-    <div class="footer">
-
-    </div>
-
-    <div class="container">
-        <div class="col-md-6">
+    <section id="footer">
+        <div class="container">
             <div class="row">
-                <div class="hotheader">
-                    Hot Destination
+                <div class="col-xs-12 col-sm-12 col-md-12 mt-2 mt-sm-2 text-center text-white">
+                    <p class="h6">&copy All right Reversed.</p>
                 </div>
-                <div class="hotbody">
-                    <div class="square">
-                        <img src="htmldata/img/4.JPG">
-                    </div>
-
-
-                </div>
+                </hr>
             </div>
         </div>
-        <div class="col-md-6">
-            <div class="row">
-                <div class="hotheader">
-                    Hot Promo
-                </div>
-                <div class="hotbody">
-                    <ul>
-
-                    </ul>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
+    </section>
