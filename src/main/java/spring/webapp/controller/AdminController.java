@@ -12,6 +12,8 @@ import spring.webapp.database.entity.User;
 import spring.webapp.database.repository.AdminInfoRepository;
 import spring.webapp.database.repository.FlightDetailRepository;
 import spring.webapp.database.repository.UserRepository;
+import spring.webapp.specification.FlightDetailSpecification;
+import spring.webapp.specification.SearchCriteria;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.LinkedHashMap;
@@ -33,18 +35,20 @@ public class AdminController {
     private String arrivaltime;
     private String seatleft;
     private String seatmax;
-    private String airline = null;
+    private String airline;
     private String flightno;
     private String price;
+    private String airlineForPrint = null;
 
     @GetMapping("/adminpage")
     public String show(HttpServletRequest request, Authentication auth) {
-        if (airline == null) {
+        if (airlineForPrint == null) {
             Integer userID = ur.findOneByEmail(auth.getName()).getId();
             request.getSession().setAttribute("airline", air.findAdminInfoByAdminID(userID).getAirline());
         }
         String airline = (String)request.getSession().getAttribute("airline");
-        request.getSession().setAttribute("flights",fdr.findAllByAirline(airline));
+        FlightDetailSpecification spec = new FlightDetailSpecification(new SearchCriteria("airline", ":", airline));
+        request.getSession().setAttribute("flights",fdr.findAll(spec));
         return "adminpage";
     }
 

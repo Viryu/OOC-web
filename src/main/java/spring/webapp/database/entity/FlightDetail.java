@@ -8,7 +8,7 @@ public class FlightDetail {
     @Id
     @GeneratedValue(strategy= GenerationType.AUTO)
     @Column
-    private Integer FlightID;
+    private Integer flightid;
     @Column(nullable=false)
     private String startdestination;
     @Column(nullable=false)
@@ -32,12 +32,12 @@ public class FlightDetail {
     @Column
     private float price; // in bahts
 
-    public Integer getFlightID() {
-        return FlightID;
+    public Integer getFlightid() {
+        return flightid;
     }
 
-    public void setFlightID(Integer flightID) {
-        FlightID = flightID;
+    public void setFlightid(Integer flightid) {
+        this.flightid = flightid;
     }
 
     public String getStartdestination() {

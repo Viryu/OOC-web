@@ -189,7 +189,7 @@
                             <h1>Southern Malang Beach</h1>
                             <h3>Escape from the city</h3>
                         </hgroup>
-                        <a href="/lounge"><button class="btn btn-hero btn-lg" role="button">Book Now!</button></a>
+                        <a href="/booking"><button class="btn btn-hero btn-lg" role="button">Book Now!</button></a>
                     </div>
 
                 </div>
@@ -200,7 +200,7 @@
                             <h1>Pari Island</h1>
                             <h3>Enjoy the freshness of seafoods</h3>
                         </hgroup>
-                        <a href="/company"><button class="btn btn-hero btn-lg" role="button">Book Now!</button></a>
+                        <a href="/booking"><button class="btn btn-hero btn-lg" role="button">Book Now!</button></a>
                     </div>
                 </div>
                 <div class="item slides">
@@ -210,7 +210,7 @@
                             <h1>Keraton Hill</h1>
                             <h3>Enjoy the scenery from a hill</h3>
                         </hgroup>
-                        <a href="/lounge"><button class="btn btn-hero btn-lg" role="button">Book Now!</button></a>
+                        <a href="/booking"><button class="btn btn-hero btn-lg" role="button">Book Now!</button></a>
                     </div>
                 </div>
             </div>

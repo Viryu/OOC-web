@@ -90,7 +90,7 @@
                     </div>
                     <div class="panel-body">
                         <form action="/admininsert" method="post">
-                            <h4>Airline : </h4><input name="airline" type="text" id="airline" value="${airline}" disabled>
+                            <h4>Airline : </h4><input name="airline" type="text" id="airline" value="${airline}" readonly>
                             <h4>Flight No : </h4><input name="flightno" type="text" id="flightno" value="${flightno}">
                             <h4>From : </h4><input name="startdestination" type="text" id="startdestination" value="${startdestination}">
                             <h4>To : </h4><input name="enddestination" type="text" id="enddestination" value="${enddestination}">
