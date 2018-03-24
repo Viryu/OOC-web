@@ -4,46 +4,40 @@ import javax.persistence.*;
 import javax.validation.constraints.*;
 
 @Entity
-@Table(name="FlightDetail")
 public class FlightDetail {
-    @NotNull
     @Id
-    @Size(max = 5)
-    private String FlightID;
-    @Column(nullable=false)
-    private String destination;
+    @GeneratedValue(strategy= GenerationType.AUTO)
+    @Column
+    private Integer FlightID;
     @Column(nullable=false)
     private String startdestination;
-    @Column(columnDefinition = "date" , nullable=false)
-    private String dod;
+    @Column(nullable=false)
+    private String enddestination;
     @Column
+    private String arrivaldate;
+    @Column(length=10)
+    private String arrivaltime;
+    @Column
+    private String departuredate;
+    @Column(length=10)
+    private String departuretime;
+    @Column(length=5)
     private Integer seatleft;
+    @Column(length=5)
+    private Integer seatmax;
+    @Column(length=20)
+    private String airline;
+    @Column(length=8)
+    private String flightno;
+    @Column
+    private float price; // in bahts
 
-    protected FlightDetail(){
-
-    }
-    public FlightDetail(String flightID, String destination, String startdestination, String dod, Integer seatleft) {
-        FlightID = flightID;
-        this.destination = destination;
-        this.startdestination = startdestination;
-        this.dod = dod;
-        this.seatleft = seatleft;
-    }
-
-    public String getFlightID() {
+    public Integer getFlightID() {
         return FlightID;
     }
 
-    public void setFlightID(String flightID) {
+    public void setFlightID(Integer flightID) {
         FlightID = flightID;
-    }
-
-    public String getDestination() {
-        return destination;
-    }
-
-    public void setDestination(String destination) {
-        this.destination = destination;
     }
 
     public String getStartdestination() {
@@ -54,12 +48,44 @@ public class FlightDetail {
         this.startdestination = startdestination;
     }
 
-    public String getDod() {
-        return dod;
+    public String getEnddestination() {
+        return enddestination;
     }
 
-    public void setDod(String dod) {
-        this.dod = dod;
+    public void setEnddestination(String enddestination) {
+        this.enddestination = enddestination;
+    }
+
+    public String getArrivaldate() {
+        return arrivaldate;
+    }
+
+    public void setArrivaldate(String arrivaldate) {
+        this.arrivaldate = arrivaldate;
+    }
+
+    public String getArrivaltime() {
+        return arrivaltime;
+    }
+
+    public void setArrivaltime(String arrivaltime) {
+        this.arrivaltime = arrivaltime;
+    }
+
+    public String getDeparturedate() {
+        return departuredate;
+    }
+
+    public void setDeparturedate(String departuredate) {
+        this.departuredate = departuredate;
+    }
+
+    public String getDeparturetime() {
+        return departuretime;
+    }
+
+    public void setDeparturetime(String departuretime) {
+        this.departuretime = departuretime;
     }
 
     public Integer getSeatleft() {
@@ -68,5 +94,37 @@ public class FlightDetail {
 
     public void setSeatleft(Integer seatleft) {
         this.seatleft = seatleft;
+    }
+
+    public Integer getSeatmax() {
+        return seatmax;
+    }
+
+    public void setSeatmax(Integer seatmax) {
+        this.seatmax = seatmax;
+    }
+
+    public String getAirline() {
+        return airline;
+    }
+
+    public void setAirline(String airline) {
+        this.airline = airline;
+    }
+
+    public String getFlightno() {
+        return flightno;
+    }
+
+    public void setFlightno(String flightno) {
+        this.flightno = flightno;
+    }
+
+    public float getPrice() {
+        return price;
+    }
+
+    public void setPrice(float price) {
+        this.price = price;
     }
 }

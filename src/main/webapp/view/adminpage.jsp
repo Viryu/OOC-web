@@ -1,9 +1,10 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 <script src="htmldata/js/jquery-3.2.1.min.js"></script>
 <link href="htmldata/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
 <script src="htmldata/js/bootstrap.min.js"></script>
 <link rel="stylesheet" type="text/css" href="htmldata/css2/moderatorpage.css">
-<script src="htmldata/js2/moderatorpage.js"></script>
+<script src="htmldata/js2/adminpage.js"></script>
 <!------ Include the above in your HEAD tag ---------->
 <html lang="en">
 <head>
@@ -14,8 +15,8 @@
 
 </head>
 <body>
-<script type="text/javascript">
-    $(document).ready(onLoadAdmin());
+<<script type="text/javascript">
+    $(document).ready(onLoadAdmin);
 </script>
 <nav class="navbar navbar-default">
     <div class="container">
@@ -38,7 +39,7 @@
             </ul>
 
             <ul class="nav navbar-nav navbar-right">
-                <li class="active"><a href="index.html">Welcome, Admin</a></li>
+                <li class="active"><a href="index.html">Welcome, <sec:authentication property="name"/></a></li>
                 <li><a href="login.html">Logout</a></li>
 
             </ul>
@@ -75,7 +76,6 @@
         <div class="row">
             <div class="col-md-3">
                 <div class="list-group">
-                    <button class="list-group-item active main-color-bg" onclick="dashboardFunction()"><span class="glyphicon glyphicon-cog" aria-hidden="true"></span> Dashboard</button>
                     <button class="list-group-item" onclick="newItemFunction()"><span class="glyphicon glyphicon-plane" aria-hidden="true"></span> Add New Flight</button>
                     <button class="list-group-item" onclick="manageFlightFunction()"><span class="glyphicon glyphicon-user" aria-hidden="true"></span> Manage Flight</button>
                 </div>
@@ -83,37 +83,68 @@
             </div>
 
             <div class="col-md-9">
-                <div class="panel panel-default" id="dashboardPanel">
-                    <div class="panel-heading" style="background-color:  #095f59;">
-                        <h3 class="panel-title">Your Flight</h3>
-                    </div>
-                    <div class="panel-body">
-
-                    </div>
-                </div>
                 <!--Latest User-->
                 <div class="panel panel-default" id="newItemPanel" style="display:none;">
                     <div class="panel-heading" style="background-color:  #095f59;">
                         <h3 class="panel-title">Add New Flight</h3>
                     </div>
                     <div class="panel-body">
-                        <form action="/insertitem" method="post">
-                            <h4>Flight ID : </h4><input name="id" type="text"id="id" value="${id}">
+                        <form action="/admininsert" method="post">
+                            <h4>Airline : </h4><input type="text" id="airline" value="${airline}">
+                            <h4>Flight No : </h4><input type="text" id="flightno" value="${flightno}">
                             <h4>From : </h4><input name="startdestination" type="text" id="startdestination" value="${startdestination}">
-                            <h4>To : </h4><input name="destination" type="text" id="destination" value="${destination}">
-                            <h4>Date of Departure : </h4><input name="date" type="date" id="date" value="${dod}">
-                            <h4>Seats : </h4><input name="numeric" type="number" id="seats" value="${seats}">
+                            <h4>To : </h4><input name="enddestination" type="text" id="enddestination" value="${enddestination}">
+                            <h4>Date of Departure : </h4><input name="departuredate" type="date" id="departuredate" value="${departuredate}">
+                            <h4>Departure Time : </h4><input name="departuretime" type="time" id="departuretime" value="${departuretime}" placeholder="Departure Time">>
+                            <h4>Arrival Date : </h4><input name="arrivaldate" type="date" id="arrivaldate" value="${arrivaldate}">
+                            <h4>Arrival Time : </h4><input type="time" name="arrivaltime" value="${arrivaltime}">
+                            <h4>Seats : </h4><input name="seatleft" type="number" id="seats" value="${seatleft}">
+                            <h4>Price : </h4><input type="text" id="price" value="${price}">
+                            <input class="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
                             <h4></h4><input type="submit">
                         </form>
                     </div>
                 </div>
 
-                <div class="panel panel-default" id="manageUserPanel" style="display:none;">
+                <div class="panel panel-default" id="manageFlightPanel" style="display:none;">
                     <div class="panel-heading" style="background-color:  #095f59;">
                         <h3 class="panel-title">Manage Flight</h3>
                     </div>
                     <div class="panel-body">
-
+                        <table class="table table-hover">
+                            <thead>
+                            <tr>
+                                <th>Airline</th>
+                                <th>Flight No</th>
+                                <th>Flight From</th>
+                                <th>Flight Destination</th>
+                                <th>Date of Departure</th>
+                                <th>Departure Time</th>
+                                <th>Arrival Date</th>
+                                <th>Arrival Time</th>
+                                <th>Seats Left</th>
+                                <th>Seat Max</th>
+                                <th>Price</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <c:forEach var="flight" items="${flights}">
+                                <tr>
+                                    <td>${flight.ariline}</td>
+                                    <td>${flight.flightno}</td>
+                                    <td>${flight.startdestination}</td>
+                                    <td>${flight.enddestination}</td>
+                                    <td>${flight.departuredate}</td>
+                                    <td>${flight.departuretime}</td>
+                                    <td>${flight.arrivaldate}</td>
+                                    <td>${flight.arrivaltime}</td>
+                                    <td>${flight.seatleft}</td>
+                                    <td>${flight.seatmax}</td>
+                                    <td>${flight.price}</td>
+                                </tr>
+                            </c:forEach>
+                            </tbody>
+                        </table>
                     </div>
                 </div>
             </div>

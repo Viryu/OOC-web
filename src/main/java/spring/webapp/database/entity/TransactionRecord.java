@@ -1,4 +1,4 @@
-package spring.webapp.database.Entity;
+package spring.webapp.database.entity;
 
 import javax.persistence.*;
 import javax.validation.constraints.*;
@@ -7,33 +7,17 @@ import javax.validation.constraints.*;
 @Table(name="TransactionRecord")
 public class TransactionRecord {
     @Id
-    @Size(max = 5)
     private String TransactionId;
     @Column(columnDefinition = "date")
     private String TransactionDate;
     @Column
-    private String FlightId;
-    @ManyToOne
-    @JoinColumn(name="UserId")
-    private User UserId;
+    private Integer UserId;
     @Column
-    private Integer Ammount;
-
-    public TransactionRecord(String transactionId, String transactionDate, String flightId, User userId, Integer ammount) {
-        TransactionId = transactionId;
-        TransactionDate = transactionDate;
-        FlightId = flightId;
-        UserId = userId;
-        Ammount = ammount;
-    }
-
-    public User getUserId() {
-        return UserId;
-    }
-
-    public void setUserId(User userId) {
-        UserId = userId;
-    }
+    private String FlightId;
+    @Column
+    private Integer NoPassenger;
+    @Column
+    private String BookingStatus;
 
     public String getTransactionId() {
         return TransactionId;
@@ -51,6 +35,14 @@ public class TransactionRecord {
         TransactionDate = transactionDate;
     }
 
+    public Integer getUserId() {
+        return UserId;
+    }
+
+    public void setUserId(Integer userId) {
+        UserId = userId;
+    }
+
     public String getFlightId() {
         return FlightId;
     }
@@ -59,11 +51,19 @@ public class TransactionRecord {
         FlightId = flightId;
     }
 
-    public Integer getAmmount() {
-        return Ammount;
+    public Integer getNoPassenger() {
+        return NoPassenger;
     }
 
-    public void setAmmount(Integer ammount) {
-        Ammount = ammount;
+    public void setNoPassenger(Integer noPassenger) {
+        NoPassenger = noPassenger;
+    }
+
+    public String getBookingStatus() {
+        return BookingStatus;
+    }
+
+    public void setBookingStatus(String bookingStatus) {
+        BookingStatus = bookingStatus;
     }
 }
