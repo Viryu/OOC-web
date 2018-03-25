@@ -2,6 +2,7 @@
 <link rel="stylesheet" type="text/css" href="htmldata\css\bootstrap.css">
 <link href="htmldata\css2\register.css" rel="stylesheet" id="bootstrap-css">
 <script src="htmldata\js\bootstrap.js"></script>
+<script src="htmldata\js2\register.js"></script>
 <div class="container">
     <div class="row centered-form">
         <div class="col-xs-12 col-sm-8 col-md-4 col-sm-offset-2 col-md-offset-4">
@@ -47,6 +48,7 @@
                         </div>
                         <input class="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
                         <input type="submit" value="Register" class="btn btn-info btn-block">
+                        <button type="button" class="btn btn-info btn-block" onclick="homeredirect()">Return To Home</button>
 
                     </form>
                 </div>

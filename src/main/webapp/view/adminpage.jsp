@@ -27,7 +27,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <img src="htmldata/img/logo.png" alt="logo" style="Height: 35px;width: 100px;">
+            <img src="htmldata/img/logowhite.png" alt="logo" style="Height: 35px;width: 100px;">
             <%--<a class="navbar-brand" href="#">WeTravel</a>--%>
         </div>
         <div id="navbar" class="collapse navbar-collapse">

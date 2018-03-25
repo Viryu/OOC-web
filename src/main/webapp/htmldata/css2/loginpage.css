@@ -1,10 +1,14 @@
 .container{
-	margin-top: 10%;
-	margin-left: 35%;
+	margin: 10%;
 }
 
 .alert {
 	height: 30px;
 	line-height:30px;
 	padding:0 10px;
+}
+body{
+	background-image: url("loginbackground.jpg");
+	background-repeat: no-repeat;
+	background-size: cover;
 }

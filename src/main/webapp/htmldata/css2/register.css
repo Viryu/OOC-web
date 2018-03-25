@@ -1,5 +1,7 @@
 body{
-    background-color: #525252;
+    background-image: url("registerbackground.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
 }
 .centered-form{
   margin-top: 60px;

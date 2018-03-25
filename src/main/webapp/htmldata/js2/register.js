@@ -1,0 +1,4 @@
+function homeredirect() {
+    location.href = "/";
+
+}

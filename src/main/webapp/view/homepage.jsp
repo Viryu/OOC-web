@@ -152,6 +152,8 @@
         <ul class="nav navbar-nav">
             <li><img src="htmldata/img/logo.png" alt="Logo" style="width:100px;height:50px"></li>
             <li><a href="/">Home</a></li>
+            <li><a href="/booking">Order Ticket</a></li>
+            <li><a href="/receipt">Receipt</a></li>
         </ul>
         <ul class="nav navbar-nav navbar-right">
             <sec:authorize access="isAuthenticated()">
