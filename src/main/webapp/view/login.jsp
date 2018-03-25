@@ -4,6 +4,7 @@
 <head>
     <link href="htmldata\css\bootstrap.css" rel="stylesheet" id="bootstrap-css">
     <link rel="stylesheet" type="text/css" href="htmldata\css2\loginpage.css">
+    <script src="htmldata\js2\login.js"></script>
 </head>
 <!------ Include the above in your HEAD tag ---------->
 <div class="container">
@@ -38,7 +39,7 @@
                             </div>
                             <!-- Change this to a button or input when using this as a form -->
                             <input type="submit" value="Login" class="btn btn-info btn-block">
-                            <button type="button" class="btn btn-info btn-block">Return To Home</button>
+                            <button type="button" class="btn btn-info btn-block" onclick="homeredirect()">Return To Home</button>
                         </fieldset>
                     </form>
                 </div>

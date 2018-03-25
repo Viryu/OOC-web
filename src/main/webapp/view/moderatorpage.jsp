@@ -27,14 +27,10 @@
                 <span class="icon-bar"></span>
             </button>
             <img src="htmldata/img/logowhite.png" alt="logo" style="Height: 35px;width: 100px;">
-            <%--<a class="navbar-brand" href="#">WeTravel</a>--%>
         </div>
         <div id="navbar" class="collapse navbar-collapse">
             <ul class="nav navbar-nav">
                 <li class="active"><a href="/moderatormenu">Dashboard</a></li>
-                <%--<li><a href="pages.html">Pages</a></li>--%>
-                <%--<li><a href="posts.html">Posts</a></li>--%>
-                <%--<li><a href="users.html">Users</a></li>--%>
             </ul>
 
             <ul class="nav navbar-nav navbar-right">
@@ -98,15 +94,15 @@
                     </div>
                     <div class="panel-body">
                         <form action="/moderatorinsert" method="post">
-                            <h4>First Name : </h4><input name="first_name" type="text" id="first_name" value="${first_name}">
-                            <h4>Last Name : </h4><input name="last_name" type="text" id="last_name" value="${last_name}">
-                            <h4>Phone Number : </h4><input name="phone_number" type="text" id="phone_number" value="${phone_number}">
-                            <h4>Email : </h4><input name="email" type="text" id="email" value="${email}">
-                            <h4>Password : </h4><input name="password" type="password" id="password" value="${password}">
-                            <h4>DOB : </h4><input name="dob" type="date" id="dob" value="${dob}">
-                            <h4>Airline : </h4><input type="text" name="airline" id="airline" value="${airline}">
+                            <h4>First Name : </h4><input name="first_name" type="text" id="first_name" value="${first_name}" class="form-control">
+                            <h4>Last Name : </h4><input name="last_name" type="text" id="last_name" value="${last_name}" class="form-control">
+                            <h4>Phone Number : </h4><input name="phone_number" type="text" id="phone_number" value="${phone_number}" class="form-control">
+                            <h4>Email : </h4><input name="email" type="text" id="email" value="${email}" class="form-control">
+                            <h4>Password : </h4><input name="password" type="password" id="password" value="${password}" class="form-control">
+                            <h4>DOB : </h4><input name="dob" type="date" id="dob" value="${dob}" class="form-control">
+                            <h4>Airline : </h4><input type="text" name="airline" id="airline" value="${airline}" class="form-control">
                             <input class="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
-                            <h4></h4><input type="submit">
+                            <h4></h4><input type="submit" class="btn btn-primary">
                         </form>
                     </div>
                 </div>
