@@ -1,4 +1,5 @@
 <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <script src="htmldata/js/jquery-3.2.1.min.js"></script>
 <link href="htmldata/css/bootstrap.css" rel="stylesheet" id="bootstrap-css">
 <script src="htmldata/js/bootstrap.js"></script>
@@ -44,36 +45,46 @@
                         <p class="text-center">Airplane Ticket</p>
                     </div>
                     <div class="panel-body">
-                        <form class="form-horizontal" action="/ticket" method="post">
-                            <div class="form-group">
-                                <div class="col-sm-6">
-                                    <label>Passenger Amount</label>
-                                    <input type="number" class="form-control" name="passengeramount">
-                                </div>
-                                <div class="col-sm-6">
-                                    <label>Flight Date</label>
-                                    <input type="date" class="form-control" name="departuredate">
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <div class="col-sm-6">
-                                    <label>Starting Point</label>
-                                    <input type="text" class="form-control" name="startdestination">
-                                </div>
-                                <div class="col-sm-6">
-                                    <label>Destination</label>
-                                    <input type="text" class="form-control" name="enddestination">
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <div class="col-xs-5">
-                                </div>
-                                <div class="col-xs-2">
-                                    <input class="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
-                                    <button type="submit" class="btn btn-primary">Search Flight</button>
-                                </div>
-                            </div>
-                        </form>
+                        <table class="table table-hover">
+                            <thead>
+                            <tr>
+                                <th>Airline</th>
+                                <th>Flight No</th>
+                                <th>Flight From</th>
+                                <th>Flight Destination</th>
+                                <th>Date of Departure</th>
+                                <th>Departure Time</th>
+                                <th>Arrival Date</th>
+                                <th>Arrival Time</th>
+                                <th>Seats Left</th>
+                                <th>Seat Max</th>
+                                <th>Price</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <c:forEach var="flight" items="${flighttickets}">
+                                <tr>
+                                    <td>${flight.airline}</td>
+                                    <td>${flight.flightno}</td>
+                                    <td>${flight.startdestination}</td>
+                                    <td>${flight.enddestination}</td>
+                                    <td>${flight.departuredate}</td>
+                                    <td>${flight.departuretime}</td>
+                                    <td>${flight.arrivaldate}</td>
+                                    <td>${flight.arrivaltime}</td>
+                                    <td>${flight.seatleft}</td>
+                                    <td>${flight.seatmax}</td>
+                                    <td>${flight.price}</td>
+                                    <td><form action = "/checkout" method = "post">
+                                    <input class="hidden" name="flightID" value="${flight.FlightID}">
+                                        <input class="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
+                                    <button type="submit" class="btn btn-primary">Book</button>
+                                    </form>
+                                    </td>
+                                </tr>
+                            </c:forEach>
+                            </tbody>
+                        </table>
                     </div>
                 </div>
             </div>
