@@ -14,7 +14,7 @@
 </head>
 
 <body>
-<<script type="text/javascript">
+<script type="text/javascript">
     $(document).ready(onLoad);
 </script>
 <nav class="navbar navbar-default">
@@ -35,7 +35,14 @@
 
             <ul class="nav navbar-nav navbar-right">
                 <li class="active"><a href="index.html">Welcome, Moderator</a></li>
-                <li><a href="login.html">Logout</a></li>
+                <sec:authorize access="isAuthenticated()">
+                    <li>
+                        <form action="/logout" id="logout" method="post">
+                            <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
+                            <input type="submit" value="Logout" class="btn btn-danger btn-block">
+                        </form>
+                    </li>
+                </sec:authorize>
 
             </ul>
         </div><!--/.nav-collapse -->
