@@ -47,6 +47,7 @@
                         </div>
                         <input class="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
                         <input type="submit" value="Register" class="btn btn-info btn-block">
+                        <button type="button" class="btn btn-info btn-block">Return To Home</button>
 
                     </form>
                 </div>
