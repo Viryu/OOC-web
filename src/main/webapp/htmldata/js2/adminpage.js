@@ -18,3 +18,17 @@ function dashboardFunction(){
     x.style.display="none";
     y.style.display="none";
 }
+function manageFlight() {
+    localStorage.setItem('showFlight', 'true');
+    window.location.href = '/adminpage';
+}
+function onLoadAdmin(){
+    if(window.location.href.indexOf("adminpage")<=-1){
+        if(localStorage.getItem("showFlight")!==null){
+            localStorage.removeItem('showFlight');
+        }
+    }
+    if(localStorage.getItem("showFlight")==='true'){
+        showFlightFunction();
+    }
+}

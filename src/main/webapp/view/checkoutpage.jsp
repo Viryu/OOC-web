@@ -1,5 +1,6 @@
 <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
-<script src"htmldata/js/jquery-3.2.1.min.js"></script>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<script src="htmldata/js/jquery-3.2.1.min.js"></script>
 <script src="htmldata/js2/checkoutpage.js"></script>
 <link href="htmldata/css/bootstrap.css" rel="stylesheet" id="bootstrap-css">
 <script src="htmldata/js/bootstrap.js"></script>
@@ -37,19 +38,19 @@
     <div class="w3-container w3-teal"><h1>Check Out</h1></div>
     <div class="panel panel-default" id="passengerContainer">
         <div class="panel-body" id="passengerNumber1">
-            <label for="passenger">Passenger Name</label>
-
-            <form class="form-horizontal">
+            <c:forEach begin="${startcounting}" end="${passengeramount}" varStatus="loop">
+            <form class="form-horizontal" action="/checkout" method="post">
+            <label for="passengerNumber1">Passenger Name</label>
                 <div class="form-group">
                     <div class="col-sm-2">
-                        <select class="form-control" id="namePrefix">
-                            <option>Mr.</option>
-                            <option>Ms.</option>
-                            <option>Mrs.</option>
+                        <select class="form-control" id="namePrefix" name="namePrefix">
+                            <option value="Mr.">Mr.</option>
+                            <option value="Ms.">Ms.</option>
+                            <option value="Mrs.">Mrs.</option>
                         </select>
                     </div>
                     <div class="col-sm-8">
-                        <input type="text" class="form-control" id="passengerName" placeholder="Passenger Name">
+                        <input type="text" class="form-control" name="passengerName${loop.index}" id="passengerName" placeholder="Passenger Name">
                     </div>
                 </div>
                 <label for="idType">Identification Type</label>
@@ -62,15 +63,14 @@
                         </select>
                     </div>
                     <div class="col-sm-8">
-                        <input type="text" class="form-control" id="idNumber" placeholder="Identification Number">
+                        <input type="text" class="form-control" id="idNumber" name="idNumber${loop.index}" placeholder="Identification Number">
                     </div>
                 </div>
-                <div class="col-sm-2">
-                    <button type="button" class="btn btn-primary" onclick="addPassenger()" id="addPassengerBtn">Add New Passenger</button>
-                </div>
+                <%--<div class="col-sm-2">--%>
+                    <%--<button type="button" class="btn btn-primary" onclick="addPassenger()" id="addPassengerBtn">Add New Passenger</button>--%>
+                <%--</div>--%>
             </form>
-
-
+            </c:forEach>
         </div>
     </div>
     <div class="panel panel-default">
@@ -80,7 +80,7 @@
                     <span>Ticket Details:</span>
                 </div>
                 <div class="col-sm-8">
-                    <span>(Starting Destination)</span><i class="fa fa-long-arrow-right"></i><span>(Final Destination)</span>
+                    <span>${flightss.startdestination}</span><i class="fa fa-long-arrow-right"></i><span>${flightss.enddestination}</span>
                 </div>
             </div>
             <div class="row">
@@ -88,7 +88,7 @@
                     <span>Ticket Price:</span>
                 </div>
                 <div class="col-sm-8">
-                    <span>(Ticket Price)</span>
+                    <span>${pricetopay}</span>
                 </div>
             </div>
             <div class="row">
@@ -96,7 +96,7 @@
                     <span>Current Balance:</span>
                 </div>
                 <div class="col-sm-8">
-                    <span>(Current Account Balance)</span>
+                    <span>${userbalance}</span>
                 </div>
             </div>
             <div class="row">

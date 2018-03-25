@@ -27,7 +27,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <img src="htmldata/img/logo.jpg" alt="logo" style="Height: 35px;width: 100px;">
+            <img src="htmldata/img/logo.png" alt="logo" style="Height: 35px;width: 100px;">
             <%--<a class="navbar-brand" href="#">WeTravel</a>--%>
         </div>
         <div id="navbar" class="collapse navbar-collapse">
@@ -95,7 +95,7 @@
                             <h4>From : </h4><input name="startdestination" type="text" id="startdestination" value="${startdestination}">
                             <h4>To : </h4><input name="enddestination" type="text" id="enddestination" value="${enddestination}">
                             <h4>Date of Departure : </h4><input name="departuredate" type="date" id="departuredate" value="${departuredate}">
-                            <h4>Departure Time : </h4><input name="departuretime" type="time" id="departuretime" value="${departuretime}" placeholder="Departure Time">>
+                            <h4>Departure Time : </h4><input name="departuretime" type="time" id="departuretime" value="${departuretime}" placeholder="Departure Time">
                             <h4>Arrival Date : </h4><input name="arrivaldate" type="date" id="arrivaldate" value="${arrivaldate}">
                             <h4>Arrival Time : </h4><input type="time" name="arrivaltime" value="${arrivaltime}">
                             <h4>Seats : </h4><input name="seatleft" type="number" id="seats" value="${seatleft}">

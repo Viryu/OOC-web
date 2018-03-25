@@ -15,7 +15,9 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import spring.webapp.database.entity.User;
+import spring.webapp.database.entity.UserBalance;
 import spring.webapp.database.entity.UserInfo;
+import spring.webapp.database.repository.UserBalanceRepository;
 import spring.webapp.database.repository.UserInfoRepository;
 import spring.webapp.database.repository.UserRepository;
 
@@ -41,6 +43,8 @@ public class RegisterController {
     private AuthenticationManager authenticationManager;
     @Autowired
     private PasswordEncoder passwordEncoder;
+    @Autowired
+    private UserBalanceRepository userbalance;
 
     @GetMapping("/register")
     public String registerDefault() {
@@ -117,6 +121,7 @@ public class RegisterController {
         userRepository.save(new User(email, hashedPassword, "customer"));
         Integer userID = userRepository.findOneByEmail(email).getId();
         userInfoRepository.save(new UserInfo(userID, firstName, lastName, dob, phoneNumber));
+        userbalance.save(new UserBalance(userID,0));
     }
 
     private void loginWithAuthManager(HttpServletRequest request, String username, String password) {

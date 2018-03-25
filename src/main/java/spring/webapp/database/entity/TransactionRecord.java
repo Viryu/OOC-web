@@ -7,23 +7,28 @@ import javax.validation.constraints.*;
 @Table(name="TransactionRecord")
 public class TransactionRecord {
     @Id
-    private String TransactionId;
+    @GeneratedValue(strategy= GenerationType.AUTO)
+    private Integer TransactionId;
     @Column(columnDefinition = "date")
     private String TransactionDate;
     @Column
-    private Integer UserId;
+    private Integer userid;
     @Column
-    private String FlightId;
+    private String flightid;
     @Column
-    private Integer NoPassenger;
+    private String namePrefix;
+    @Column
+    private String passengername;
+    @Column
+    private String passengeridentification;
     @Column
     private String BookingStatus;
 
-    public String getTransactionId() {
+    public Integer getTransactionId() {
         return TransactionId;
     }
 
-    public void setTransactionId(String transactionId) {
+    public void setTransactionId(Integer transactionId) {
         TransactionId = transactionId;
     }
 
@@ -35,28 +40,44 @@ public class TransactionRecord {
         TransactionDate = transactionDate;
     }
 
-    public Integer getUserId() {
-        return UserId;
+    public Integer getUserid() {
+        return userid;
     }
 
-    public void setUserId(Integer userId) {
-        UserId = userId;
+    public void setUserid(Integer userid) {
+        this.userid = userid;
     }
 
-    public String getFlightId() {
-        return FlightId;
+    public String getFlightid() {
+        return flightid;
     }
 
-    public void setFlightId(String flightId) {
-        FlightId = flightId;
+    public void setFlightid(String flightid) {
+        this.flightid = flightid;
     }
 
-    public Integer getNoPassenger() {
-        return NoPassenger;
+    public String getNamePrefix() {
+        return namePrefix;
     }
 
-    public void setNoPassenger(Integer noPassenger) {
-        NoPassenger = noPassenger;
+    public void setNamePrefix(String namePrefix) {
+        this.namePrefix = namePrefix;
+    }
+
+    public String getPassengername() {
+        return passengername;
+    }
+
+    public void setPassengername(String passengername) {
+        this.passengername = passengername;
+    }
+
+    public String getPassengeridentification() {
+        return passengeridentification;
+    }
+
+    public void setPassengeridentification(String passengeridentification) {
+        this.passengeridentification = passengeridentification;
     }
 
     public String getBookingStatus() {
@@ -64,6 +85,14 @@ public class TransactionRecord {
     }
 
     public void setBookingStatus(String bookingStatus) {
+        BookingStatus = bookingStatus;
+    }
+    protected TransactionRecord(){}
+    public TransactionRecord(String transactionDate, String namePrefix, String passengername, String passengeridentification, String bookingStatus) {
+        TransactionDate = transactionDate;
+        this.namePrefix = namePrefix;
+        this.passengername = passengername;
+        this.passengeridentification = passengeridentification;
         BookingStatus = bookingStatus;
     }
 }

@@ -48,21 +48,21 @@
                             <div class="form-group">
                                 <div class="col-sm-6">
                                     <label>Passenger Amount</label>
-                                    <input type="number" class="form-control" name="passengeramount">
+                                    <input type="number" class="form-control" name="passengeramount" id="passengeramount" value="${passengeramount}">
                                 </div>
                                 <div class="col-sm-6">
                                     <label>Flight Date</label>
-                                    <input type="date" class="form-control" name="departuredate">
+                                    <input type="date" class="form-control" name="departuredate" id="departuredate" value="${departuredate}">
                                 </div>
                             </div>
                             <div class="form-group">
                                 <div class="col-sm-6">
                                     <label>Starting Point</label>
-                                    <input type="text" class="form-control" name="startdestination">
+                                    <input type="text" class="form-control" name="startdestination" id="startdestination" value="${startdestination}">
                                 </div>
                                 <div class="col-sm-6">
                                     <label>Destination</label>
-                                    <input type="text" class="form-control" name="enddestination">
+                                    <input type="text" class="form-control" name="enddestination" id="enddestination" value="${enddestination}">
                                 </div>
                             </div>
                             <div class="form-group">

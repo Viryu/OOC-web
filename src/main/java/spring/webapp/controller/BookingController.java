@@ -25,7 +25,7 @@ public class BookingController {
             return "bookingpage";
         }
         @PostMapping("/ticket")
-        public String showticket(HttpServletRequest request,
+        public String showticket(HttpServletRequest request, Model model,
                                  @RequestParam(value="passengeramount")String passengeramount,
                                  @RequestParam(value="startdestination")String startdestination,
                                  @RequestParam(value="enddestination")String enddestination,
@@ -36,8 +36,10 @@ public class BookingController {
             FlightDetailSpecification spec4 = new FlightDetailSpecification(new SearchCriteria("departuredate", ":", departuredate));
             List<FlightDetail> flighttickets =
                     fdr.findAll(Specifications.where(spec1).and(spec2).and(spec3).and(spec4));
-            if (flighttickets != null) System.out.println(flighttickets.get(0).getAirline());
+//            if (flighttickets != null) System.out.println(flighttickets.get(0).getAirline());
             request.getSession().setAttribute("flighttickets",flighttickets);
+            model.addAttribute("flightid");
+            model.addAttribute("passengeramount",passengeramount);
             return "ticketview";
         }
 

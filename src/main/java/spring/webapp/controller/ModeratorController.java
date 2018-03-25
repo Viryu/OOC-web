@@ -7,8 +7,10 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import spring.webapp.database.entity.AdminInfo;
 import spring.webapp.database.entity.User;
+import spring.webapp.database.entity.UserBalance;
 import spring.webapp.database.entity.UserInfo;
 import spring.webapp.database.repository.AdminInfoRepository;
+import spring.webapp.database.repository.UserBalanceRepository;
 import spring.webapp.database.repository.UserInfoRepository;
 import spring.webapp.database.repository.UserRepository;
 
@@ -29,6 +31,8 @@ public class ModeratorController {
     UserInfoRepository usi;
     @Autowired
     AdminInfoRepository air;
+    @Autowired
+    UserBalanceRepository userbalance;
     @Autowired
     private PasswordEncoder passwordEncoder;
 
@@ -106,5 +110,6 @@ public class ModeratorController {
         Integer userID = ur.findOneByEmail(email).getId();
         usi.save(new UserInfo(userID, firstName, lastName, dob, phoneNumber));
         air.save(new AdminInfo(userID,airline));
+        userbalance.save(new UserBalance(userID,0));
     }
 }
