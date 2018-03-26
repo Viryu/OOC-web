@@ -9,14 +9,14 @@ public class UserBalance {
     @Id
     private Integer userid;
     @Column
-    private Integer balance;
+    private float balance;
 
     public Integer getUserid() {
         return userid;
     }
 
     protected UserBalance(){}
-    public UserBalance(Integer userid, Integer balance) {
+    public UserBalance(Integer userid, float balance) {
         this.userid = userid;
         this.balance = balance;
     }
@@ -25,11 +25,11 @@ public class UserBalance {
         this.userid = userid;
     }
 
-    public Integer getBalance() {
+    public float getBalance() {
         return balance;
     }
 
-    public void setBalance(Integer balance) {
+    public void setBalance(float balance) {
         this.balance = balance;
     }
 }

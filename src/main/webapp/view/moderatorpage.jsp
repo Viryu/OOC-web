@@ -91,7 +91,26 @@
                         <h3 class="panel-title">Dashboard</h3>
                     </div>
                     <div class="panel-body">
-                        <h5>Recent Transactions</h5>
+                        <table class="table table-hover">
+                        <thead>
+                        <tr>
+                            <th>No</th>
+                            <th>Balance</th>
+                            <th>Date of Transaction</th>
+                            <th>UserId</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <c:forEach var="record" items="${record}" varStatus="loop">
+                            <tr>
+                                <td>${loop.index+1}</td>
+                                <td>${record.balance}</td>
+                                <td>${record.transactiondate}</td>
+                                <td>${record.userid}</td>
+                            </tr>
+                        </c:forEach>
+                        </tbody>
+                        </table>
                     </div>
                 </div>
                 <!--Latest User-->

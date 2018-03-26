@@ -9,11 +9,9 @@ import spring.webapp.database.entity.AdminInfo;
 import spring.webapp.database.entity.User;
 import spring.webapp.database.entity.UserBalance;
 import spring.webapp.database.entity.UserInfo;
-import spring.webapp.database.repository.AdminInfoRepository;
-import spring.webapp.database.repository.UserBalanceRepository;
-import spring.webapp.database.repository.UserInfoRepository;
-import spring.webapp.database.repository.UserRepository;
+import spring.webapp.database.repository.*;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.*;
 
 @Controller
@@ -35,9 +33,13 @@ public class ModeratorController {
     UserBalanceRepository userbalance;
     @Autowired
     private PasswordEncoder passwordEncoder;
+    @Autowired
+    BalanceTopUpRecordRepository recordRepository;
+
 
     @GetMapping("/moderatormenu")
-    public String show(Map<String,Object> model){
+    public String show(Model model){
+        model.addAttribute("record",recordRepository.findAll());
         return "moderatorpage";
     }
 

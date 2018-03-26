@@ -6,4 +6,5 @@ import spring.webapp.database.entity.UserInfo;
 
 @Repository
 public interface UserInfoRepository extends CrudRepository<UserInfo, Long> {
+    UserInfo findUserInfoByUserid(Integer userid);
 }

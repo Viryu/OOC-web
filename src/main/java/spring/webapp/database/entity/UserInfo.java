@@ -7,7 +7,7 @@ import javax.persistence.Id;
 @Entity
 public class UserInfo {
     @Id
-    private Integer id;
+    private Integer userid;
 
     @Column(length=30, nullable=false)
     private String firstName;
@@ -24,7 +24,7 @@ public class UserInfo {
     protected UserInfo() {}
 
     public UserInfo(Integer id, String firstName, String lastName, String dob, String phoneNumber) {
-        this.id = id;
+        this.userid = id;
         this.firstName = firstName;
         this.lastName = lastName;
         this.dob = dob;
@@ -32,11 +32,11 @@ public class UserInfo {
     }
 
     public Integer getId() {
-        return id;
+        return userid;
     }
 
     public void setId(Integer id) {
-        this.id = id;
+        this.userid = id;
     }
 
     public String getFirstName() {
