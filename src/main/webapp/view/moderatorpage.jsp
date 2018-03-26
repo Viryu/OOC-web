@@ -1,4 +1,5 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 <script src="htmldata/js/jquery-3.2.1.min.js"></script>
 <link href="htmldata/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
 <script src="htmldata/js/bootstrap.min.js"></script>
@@ -43,7 +44,6 @@
                         </form>
                     </li>
                 </sec:authorize>
-
             </ul>
         </div><!--/.nav-collapse -->
     </div>

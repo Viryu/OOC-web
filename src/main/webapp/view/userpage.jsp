@@ -139,13 +139,13 @@
                             <div class="form-group">
                                 <div class="col-md-6">
                                     <label>Amount Of Top-Up</label>
-                                    <input type="number" class="form-control" name="inputamount" value="${inputamount}">
+                                    <input type="number" class="form-control" name="inputamount" value="${inputamount}" required >
                                 </div>
                             </div>
                             <div class="form-group">
                                 <div class="col-md-6">
                                     <label>Card Owner</label>
-                                    <input type="text" class="form-control" name="cardOwner">
+                                    <input type="text" class="form-control" name="cardOwner" required minlength="2">
                                 </div>
                             </div>
                             <div class="form-group">
