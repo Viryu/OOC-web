@@ -25,7 +25,7 @@ public class LoginSuccessHandler implements AuthenticationSuccessHandler {
         else {
             if (authentication.getAuthorities().toArray()[0].toString().equals("ROLE_admin")) {
                 redirectStrategy.sendRedirect(request, response, "/adminpage");
-            }if(authentication.getAuthorities().toArray()[0].toString().equals("ROLE_moderator")){
+            }else if(authentication.getAuthorities().toArray()[0].toString().equals("ROLE_moderator")){
                 redirectStrategy.sendRedirect(request,response,"/moderatormenu");
             } else {
                 redirectStrategy.sendRedirect(request, response, "/");
