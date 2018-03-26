@@ -36,7 +36,7 @@ public class TicketingController {
         float pricetopay = passengeramount * fdr.findFlightDetailByFlightid(flightid).getPrice();
         request.getSession().setAttribute("passengeramount",passengeramount);
         request.getSession().setAttribute("pricetopay",pricetopay);
-
+        model.addAttribute("pricetopay",pricetopay);
         model.addAttribute("flightid",flightid);
         model.addAttribute("passengeramount",passengeramount);
         System.out.println(passengeramount);

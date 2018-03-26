@@ -76,6 +76,7 @@
                                     <td>${flight.price}</td>
                                     <td><form action = "/checkout" method = "post">
                                     <input class="hidden" name="flightid" value="${flight.flightid}">
+                                        <input type="hidden" name="pricetopay" value="${pricetopay}">
                                         <input type="hidden" name="passengeramount" value="${passengeramount}">
                                         <input class="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
                                     <button type="submit" class="btn btn-primary">Book</button>

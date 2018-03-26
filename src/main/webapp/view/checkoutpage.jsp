@@ -74,7 +74,9 @@
                     <div class="col-sm-2">
                         <input class="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
                         <input type="hidden" name="flightid" value="${flightid}">
+                        <input type="hidden" name="userid" value="${userid}">
                         <input type="hidden" name="passengeramount" value="${passengeramount}">
+                        <input type="hidden" name="pricetopay" value="${pricetopay}">
                         <button type="submit" class="btn btn-primary">Purchase Ticket</button>
                     </div>
                 </div>

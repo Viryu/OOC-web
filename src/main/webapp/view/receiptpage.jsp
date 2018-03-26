@@ -40,20 +40,22 @@
             </div>
             <div class="panel-body">
                 <div class="row">
+                    <input type="hidden" name="pricetopay" value="${pricetopay}">
+                    <input type="hidden" name="userid" value="${userid}">
                     <div class="col-md-6">
-                        <i class="fa fa-plane"></i><label>(Starting Point)</label><i class="fa fa-long-arrow-right"></i><label>(Destination)</label>
+                        <i class="fa fa-plane"></i><label>${flight.startdestination}</label><i class="fa fa-long-arrow-right"></i><label>${flight.enddestination}</label>
                     </div>
                     <div class="col-md-6">
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-md-6">
-                        <i class="fa fa-clock-o"></i><label>(Departure Time)</label><i class="fa fa-long-arrow-right"></i><label>(Arrival Time)</label>
+                        <i class="fa fa-clock-o"></i><label>${flight.departuretime}</label><i class="fa fa-long-arrow-right"></i><label>${flight.arrivaltime}</label>
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-md-6">
-                        <i class="fa fa-calender"></i><label>(Departure Date)</label>
+                        <i class="fa fa-calender"></i><label>${flight.departuredate}</label>
                     </div>
                 </div>
                 <br>
@@ -70,12 +72,12 @@
                 <br>
                 <div class="row">
                     <div class="col-md-6">
-                        <label>Total Price: (Price)</label>
+                        <label>Total Price: ${price}</label>
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-md-6">
-                        <label>Purchase Date: (Date)</label>
+                        <label>Purchase Date: ${transaction.transactiondate}</label>
                     </div>
                 </div>
                 <br>
