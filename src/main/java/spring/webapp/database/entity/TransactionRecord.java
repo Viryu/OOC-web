@@ -99,7 +99,7 @@ public class TransactionRecord {
 
     protected TransactionRecord(){}
 
-    public TransactionRecord(String transactionDate, Integer userid, String flightid, String namePrefix, String passengername, String idnumber, String idtype) {
+    public TransactionRecord(String transactionDate, Integer userid, String flightid, String namePrefix, String passengername, String idnumber, String idtype,String bookingcode) {
         this.TransactionDate = transactionDate;
         this.userid = userid;
         this.flightid = flightid;
@@ -107,5 +107,6 @@ public class TransactionRecord {
         this.passengername = passengername;
         this.idnumber = idnumber;
         this.idtype = idtype;
+        this.bookingcode = bookingcode;
     }
 }

@@ -19,6 +19,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Random;
 
 @Controller
 public class CheckoutController {
@@ -34,6 +35,7 @@ public class CheckoutController {
     String idnumber;
     String namePrefix;
     String idtype;
+    String bookingcode;
 
     @GetMapping("/checkout")
     public String getview(){
@@ -66,11 +68,13 @@ public class CheckoutController {
         flightDetail.setAirline(fdr.findFlightDetailByFlightid(flightid).getAirline());
         flightDetail.setFlightno(fdr.findFlightDetailByFlightid(flightid).getFlightno());
         flightDetail.setPrice(fdr.findFlightDetailByFlightid(flightid).getPrice());
+        bookingcode = bookingcoderandom();
         for (int i =0;i<passengernames.size();i++){
-            tr.save(new TransactionRecord(df.format(date),userID,fdr.findFlightDetailByFlightid(flightid).getFlightno(),namePrefixes.get(i),passengernames.get(i),idnumbers.get(i),idtypes.get(i)));
+            tr.save(new TransactionRecord(df.format(date),userID,fdr.findFlightDetailByFlightid(flightid).getFlightno(),namePrefixes.get(i),passengernames.get(i),idnumbers.get(i),idtypes.get(i),bookingcode));
 
         }
         fdr.save(flightDetail);
+        System.out.println(bookingcode);
         return "receiptpage";
     }
     ArrayList<String> passengernames = new ArrayList<>() ;
@@ -89,7 +93,15 @@ public class CheckoutController {
         model.addAttribute("idtype", idtype);
 
     }
-    private void addUserToDatabase(Authentication auth,HttpServletRequest request, Integer passengeramount) {
-
+    private String bookingcoderandom(){
+        String SALTCHARS = "ABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890";
+        StringBuilder salt = new StringBuilder();
+        Random rnd = new Random();
+        while (salt.length() < 6) { // length of the random string.
+            int index = (int) (rnd.nextFloat() * SALTCHARS.length());
+            salt.append(SALTCHARS.charAt(index));
+        }
+        String saltStr = salt.toString();
+        return saltStr;
     }
 }
