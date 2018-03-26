@@ -37,20 +37,20 @@
 <section id="mainbody">
     <div class="w3-container w3-teal"><h1>Check Out</h1></div>
     <div class="panel panel-default" id="passengerContainer">
-        <div class="panel-body" id="passengerNumber1">
-            <c:forEach begin="${startcounting}" end="${passengeramount}" varStatus="loop">
-            <form class="form-horizontal" action="/checkout" method="post">
-            <label for="passengerNumber1">Passenger Name</label>
+        <div class="panel-body">
+            <form class="form-horizontal" action="/receipt" method="post">
+            <c:forEach begin="1" end="${passengeramount}" varStatus="loop">
+            <label >Passenger Name</label>
                 <div class="form-group">
                     <div class="col-sm-2">
-                        <select class="form-control" id="namePrefix" name="namePrefix">
+                        <select class="form-control" id="namePrefix" name="namePrefix1" value="namePrefix${loop.index}">
                             <option value="Mr.">Mr.</option>
                             <option value="Ms.">Ms.</option>
                             <option value="Mrs.">Mrs.</option>
                         </select>
                     </div>
                     <div class="col-sm-8">
-                        <input type="text" class="form-control" name="passengerName${loop.index}" id="passengerName" placeholder="Passenger Name">
+                        <input type="text" class="form-control"  id="passengername1" name="passengername${loop.index}" placeholder="Passenger Name">
                     </div>
                 </div>
                 <label for="idType">Identification Type</label>
@@ -63,14 +63,20 @@
                         </select>
                     </div>
                     <div class="col-sm-8">
-                        <input type="text" class="form-control" id="idNumber" name="idNumber${loop.index}" placeholder="Identification Number">
+                        <input type="text" class="form-control" id="idnumber${loop.index}" name="idnumber${loop.index}" placeholder="Identification Number" >
                     </div>
                 </div>
                 <%--<div class="col-sm-2">--%>
                     <%--<button type="button" class="btn btn-primary" onclick="addPassenger()" id="addPassengerBtn">Add New Passenger</button>--%>
                 <%--</div>--%>
-            </form>
-            </c:forEach>
+                </c:forEach>
+                <div class="row">
+                    <div class="col-sm-2">
+                        <input class="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
+                        <button type="button" class="btn btn-primary">Purchase Ticket</button>
+                    </div>
+                </div>
+
         </div>
     </div>
     <div class="panel panel-default">
@@ -99,13 +105,9 @@
                     <span>${userbalance}</span>
                 </div>
             </div>
-            <div class="row">
-                <div class="col-sm-2">
-                    <button type="button" class="btn btn-primary">Purchase Ticket</button>
-                </div>
-            </div>
-        </div>
 
+        </div>
+        </form>
     </div>
 </section>
 </body>

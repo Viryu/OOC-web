@@ -14,7 +14,7 @@
 </head>
 
 <body>
-<<script type="text/javascript">
+<script type="text/javascript">
     $(document).ready(onLoad);
 </script>
 <nav class="navbar navbar-default">

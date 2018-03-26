@@ -1,5 +1,5 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<script src"htmldata/js/jquery-3.2.1.min.js"></script>
+<script src="htmldata/js/jquery-3.2.1.min.js"></script>
 <link href="htmldata/css/bootstrap.css" rel="stylesheet" id="bootstrap-css">
 <script src="htmldata/js/bootstrap.js"></script>
 <link rel="stylesheet" type="text/css" href="htmldata/css2/receiptpage.css">
