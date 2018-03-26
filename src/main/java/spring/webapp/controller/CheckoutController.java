@@ -74,7 +74,6 @@ public class CheckoutController {
 
         }
         fdr.save(flightDetail);
-        System.out.println(bookingcode);
         return "receiptpage";
     }
     ArrayList<String> passengernames = new ArrayList<>() ;
