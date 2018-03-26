@@ -95,19 +95,19 @@
                         <h3 class="panel-title">Add New Flight</h3>
                     </div>
                     <div class="panel-body">
-                        <form action="/admininsert" method="post">
-                            <h4>Airline : </h4><input name="airline" type="text" id="airline" value="${airline}" readonly>
-                            <h4>Flight No : </h4><input name="flightno" type="text" id="flightno" value="${flightno}">
-                            <h4>From : </h4><input name="startdestination" type="text" id="startdestination" value="${startdestination}">
-                            <h4>To : </h4><input name="enddestination" type="text" id="enddestination" value="${enddestination}">
-                            <h4>Date of Departure : </h4><input name="departuredate" type="date" id="departuredate" value="${departuredate}">
-                            <h4>Departure Time : </h4><input name="departuretime" type="time" id="departuretime" value="${departuretime}" placeholder="Departure Time">
-                            <h4>Arrival Date : </h4><input name="arrivaldate" type="date" id="arrivaldate" value="${arrivaldate}">
-                            <h4>Arrival Time : </h4><input type="time" name="arrivaltime" value="${arrivaltime}">
-                            <h4>Seats : </h4><input name="seatleft" type="number" id="seats" value="${seatleft}">
-                            <h4>Price : </h4><input name="price" type="text" id="price" value="${price}">
+                        <form action="/admininsert" method="post" onsubmit="return validate()">
+                            <h4>Airline : </h4><input name="airline" type="text" id="airline" value="${airline}" class="form-control" readonly>
+                            <h4>Flight No : </h4><input name="flightno" type="text" id="flightno" value="${flightno}" minlength="5" maxlength="6" class="form-control" required>
+                            <h4>From : </h4><input name="startdestination" type="text" id="startdestination" value="${startdestination}" class="form-control" required>
+                            <h4>To : </h4><input name="enddestination" type="text" id="enddestination" value="${enddestination}" class="form-control" required>
+                            <h4>Date of Departure : </h4><input name="departuredate" type="date" id="departuredate" value="${departuredate}" class="form-control" required>
+                            <h4>Departure Time : </h4><input name="departuretime" type="time" id="departuretime" value="${departuretime}" placeholder="Departure Time" class="form-control" required>
+                            <h4>Arrival Date : </h4><input name="arrivaldate" type="date" id="arrivaldate" value="${arrivaldate}" class="form-control" required>
+                            <h4>Arrival Time : </h4><input type="time" name="arrivaltime" value="${arrivaltime}" class="form-control" required>
+                            <h4>Seats : </h4><input name="seatleft" type="number" id="seats" value="${seatleft}" class="form-control"required min="40">
+                            <h4>Price : </h4><input name="price" type="text" id="price" value="${price}" class="form-control" required>
                             <input class="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
-                            <h4></h4><input type="submit">
+                            <h4></h4><input type="submit" class="btn btn-primary">
                         </form>
                     </div>
                 </div>

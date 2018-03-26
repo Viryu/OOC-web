@@ -53,3 +53,21 @@ function onLoad() {
         showUserFunction();
     }
 }
+function validate() {
+    var indate = document.getElementById("dob").value;
+    var currdate = new Date();
+    var inputteddate = new Date(indate);
+    var flag =-1;
+    var alertmsg="";
+    if (inputteddate>currdate){
+        flag=1;
+        alertmsg="You can't put future date as your Date of Birth!";
+    }
+
+    if (flag==1){
+        alert(alertmsg);
+        return false;
+    }else{
+        return true;
+    }
+}

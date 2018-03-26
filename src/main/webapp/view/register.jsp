@@ -14,35 +14,35 @@
                     </c:if>
                 </div>
                 <div class="panel-body">
-                    <form role="form" action="/register=newuser" method = "post">
+                    <form role="form" action="/register=newuser" method = "post" onsubmit="return validate()">
                         <div class="row">
                             <div class="col-xs-6 col-sm-6 col-md-6">
                                 <div class="form-group">
-                                    <input type="text" name="first_name" id="first_name" value="${first_name}" class="form-control input-sm" placeholder="First Name">
+                                    <input type="text" name="first_name" id="first_name" value="${first_name}" class="form-control input-sm" placeholder="First Name" minlength="3" required>
                                 </div>
                             </div>
                             <div class="col-xs-6 col-sm-6 col-md-6">
                                 <div class="form-group">
-                                    <input type="text" name="last_name" id="last_name" value="${last_name}" class="form-control input-sm" placeholder="Last Name">
+                                    <input type="text" name="last_name" id="last_name" value="${last_name}" class="form-control input-sm" placeholder="Last Name" minlength="3" required>
                                 </div>
                             </div>
                         </div>
 
                         <div class="form-group">
-                            <input type="email" name="email" id="email" value="${email}" class="form-control input-sm" placeholder="Email Address">
-                            <input type="date" name="dob" id="dob" value="${dob}"  class="form-control input-sm">
-                            <input type="text" name="phone_number" id="phone_number" value="${phone_number}" class="form-control input-sm" placeholder ="Phone Number">
+                            <input type="email" name="email" id="email" value="${email}" class="form-control input-sm" placeholder="Email Address" required>
+                            <input type="date" name="dob" id="dob" value="${dob}"  class="form-control input-sm" required>
+                            <input type="text" name="phone_number" id="phone_number" value="${phone_number}" class="form-control input-sm" placeholder ="Phone Number" minlength="10" maxlength="12" required>
                         </div>
 
                         <div class="row">
                             <div class="col-xs-6 col-sm-6 col-md-6">
                                 <div class="form-group">
-                                    <input type="password" name="password" id="password" class="form-control input-sm" placeholder="Password">
+                                    <input type="password" name="password" id="password" class="form-control input-sm" placeholder="Password" minlength="5" required>
                                 </div>
                             </div>
                             <div class="col-xs-6 col-sm-6 col-md-6">
                                 <div class="form-group">
-                                    <input type="password" name="password_confirmation" id="password_confirmation" class="form-control input-sm" placeholder="Confirm Password">
+                                    <input type="password" name="password_confirmation" id="password_confirmation" class="form-control input-sm" placeholder="Confirm Password" minlength="5" required>
                                 </div>
                             </div>
                         </div>

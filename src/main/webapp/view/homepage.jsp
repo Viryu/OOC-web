@@ -154,6 +154,10 @@
             <li><a href="/">Home</a></li>
             <li><a href="/booking">Order Ticket</a></li>
             <li><a href="/receipt">Receipt</a></li>
+            <sec:authorize access="isAuthenticated()">
+                <li><a href="/user">My Profile</a></li>
+            </sec:authorize>
+
         </ul>
         <ul class="nav navbar-nav navbar-right">
             <sec:authorize access="isAuthenticated()">

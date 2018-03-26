@@ -100,14 +100,14 @@
                         <h3 class="panel-title">Add New Admin</h3>
                     </div>
                     <div class="panel-body">
-                        <form action="/moderatorinsert" method="post">
-                            <h4>First Name : </h4><input name="first_name" type="text" id="first_name" value="${first_name}" class="form-control">
-                            <h4>Last Name : </h4><input name="last_name" type="text" id="last_name" value="${last_name}" class="form-control">
-                            <h4>Phone Number : </h4><input name="phone_number" type="text" id="phone_number" value="${phone_number}" class="form-control">
-                            <h4>Email : </h4><input name="email" type="text" id="email" value="${email}" class="form-control">
-                            <h4>Password : </h4><input name="password" type="password" id="password" value="${password}" class="form-control">
-                            <h4>DOB : </h4><input name="dob" type="date" id="dob" value="${dob}" class="form-control">
-                            <h4>Airline : </h4><input type="text" name="airline" id="airline" value="${airline}" class="form-control">
+                        <form action="/moderatorinsert" method="post" onsubmit="return validate()">
+                            <h4>First Name : </h4><input name="first_name" type="text" id="first_name" value="${first_name}" class="form-control" required minlength="3">
+                            <h4>Last Name : </h4><input name="last_name" type="text" id="last_name" value="${last_name}" class="form-control" required minlength="3">
+                            <h4>Phone Number : </h4><input name="phone_number" type="text" id="phone_number" value="${phone_number}" class="form-control" required minlength="10" maxlength="12">
+                            <h4>Email : </h4><input name="email" type="text" id="email" value="${email}" class="form-control" required>
+                            <h4>Password : </h4><input name="password" type="password" id="password" value="${password}" class="form-control" required minlength="5">
+                            <h4>DOB : </h4><input name="dob" type="date" id="dob" value="${dob}" class="form-control" required>
+                            <h4>Airline : </h4><input type="text" name="airline" id="airline" value="${airline}" class="form-control" required>
                             <input class="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
                             <h4></h4><input type="submit" class="btn btn-primary">
                         </form>
