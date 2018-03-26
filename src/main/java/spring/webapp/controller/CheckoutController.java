@@ -5,15 +5,19 @@ import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-import spring.webapp.database.entity.FlightDetail;
+import spring.webapp.database.entity.*;
 import spring.webapp.database.repository.FlightDetailRepository;
+import spring.webapp.database.repository.TransactionRecordRepository;
 import spring.webapp.database.repository.UserBalanceRepository;
 import spring.webapp.database.repository.UserRepository;
 import spring.webapp.specification.FlightDetailSpecification;
 import spring.webapp.specification.SearchCriteria;
 
 import javax.servlet.http.HttpServletRequest;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 @Controller
@@ -24,34 +28,50 @@ public class CheckoutController {
     UserBalanceRepository userbalance;
     @Autowired
     UserRepository ur;
+    @Autowired
+    TransactionRecordRepository tr;
     String passengername;
     String idnumber;
+    String namePrefix;
+    String idtype;
     @GetMapping("/checkout")
     public String getview(){
         return "checkoutpage";
     }
     @PostMapping("/receipt")
     public String viewcheckout(HttpServletRequest request,Authentication auth, Model model,
-                               @RequestParam(value="passengername")String passengername,
-                               @RequestParam(value="idnumber")String idnumber){
-        setSession(model,passengername,idnumber);
+                               @RequestParam(value="namePrefix[]")String[] namePrefix,
+                               @RequestParam(value="passengername[]")String[] passengername,
+                               @RequestParam(value ="idtype[]" )String[] idtype,
+                               @RequestParam(value="idnumber[]")String[] idnumber){
+        for (int i=0;i<passengername.length;i++){
+            setSession(model,passengername[i],idnumber[i],namePrefix[i],idtype[i]);
+        }
+        addUserToDatabase(auth);
         return "receiptpage";
     }
-    List<String> passengernames;
-    List<String> idnumbers;
-    private void setSession(Model model,String passengername,String idnumber) {
-        passengernames = new ArrayList<>();
-        this.passengername = passengername;
-        this.idnumber = idnumber;
+    ArrayList<String> passengernames = new ArrayList<>() ;
+    ArrayList<String> idnumbers = new ArrayList<>();
+    ArrayList<String> namePrefixes = new ArrayList<>();
+    ArrayList<String> idtypes = new ArrayList<>();
+    private void setSession(Model model,String passengername,String idnumber,String namePrefix,String idtype) {
+        this.namePrefixes.add(namePrefix);
+        this.passengernames.add(passengername);
+        this.idnumbers.add(idnumber);
+        this.idtypes.add(idtype);
+
         model.addAttribute("passengername", passengername);
         model.addAttribute("idnumber", idnumber);
-//        for(int i=1;i<=passengeramount;i++){
-//            String name = passengername+i;
-//            String id = idnumber+i;
+        model.addAttribute("namePrefix", namePrefix);
+        model.addAttribute("idtype", idtype);
 
-
-//            passengernames.add(name);
-//            idnumbers.add(id);
-//        }
+    }
+    private void addUserToDatabase(Authentication auth) {
+        DateFormat df = new SimpleDateFormat("yyyy/MM/dd");
+        Date date = new Date();
+        Integer userID = ur.findOneByEmail(auth.getName()).getId();
+        for (int i =0;i<passengernames.size();i++){
+            tr.save(new TransactionRecord(df.format(date),userID,"JT250",namePrefixes.get(i),passengernames.get(i),idnumbers.get(i),idtypes.get(i)));
+        }
     }
 }

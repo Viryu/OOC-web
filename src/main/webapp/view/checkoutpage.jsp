@@ -43,27 +43,27 @@
             <label >Passenger Name</label>
                 <div class="form-group">
                     <div class="col-sm-2">
-                        <select class="form-control" id="namePrefix" name="namePrefix1" value="namePrefix${loop.index}">
-                            <option value="Mr.">Mr.</option>
+                        <select class="form-control" id="namePrefix" name="namePrefix[]">
+                            <option selected value="Mr.">Mr.</option>
                             <option value="Ms.">Ms.</option>
                             <option value="Mrs.">Mrs.</option>
                         </select>
                     </div>
                     <div class="col-sm-8">
-                        <input type="text" class="form-control"  id="passengername1" name="passengername${loop.index}" placeholder="Passenger Name">
+                        <input type="text" class="form-control"  id="passengername${loop.index}" name="passengername[]" placeholder="Passenger Name">
                     </div>
                 </div>
                 <label for="idType">Identification Type</label>
                 <div class="form-group">
                     <div class="col-sm-2">
-                        <select class="form-control" id="idType">
-                            <option>Identity Card</option>
+                        <select class="form-control" id="idType" name="idtype[]">
+                            <option selected>Identity Card</option>
                             <option>Passport</option>
                             <option>Driving License</option>
                         </select>
                     </div>
                     <div class="col-sm-8">
-                        <input type="text" class="form-control" id="idnumber${loop.index}" name="idnumber${loop.index}" placeholder="Identification Number" >
+                        <input type="text" class="form-control" id="idnumber${loop.index}" name="idnumber[]" placeholder="Identification Number" >
                     </div>
                 </div>
                 <%--<div class="col-sm-2">--%>
@@ -73,10 +73,10 @@
                 <div class="row">
                     <div class="col-sm-2">
                         <input class="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
-                        <button type="button" class="btn btn-primary">Purchase Ticket</button>
+                        <button type="submit" class="btn btn-primary">Purchase Ticket</button>
                     </div>
                 </div>
-
+            </form>
         </div>
     </div>
     <div class="panel panel-default">

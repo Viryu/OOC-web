@@ -1,7 +1,6 @@
 package spring.webapp.database.entity;
 
 import javax.persistence.*;
-import javax.validation.constraints.*;
 
 @Entity
 @Table(name="TransactionRecord")
@@ -20,9 +19,11 @@ public class TransactionRecord {
     @Column
     private String passengername;
     @Column
-    private String passengeridentification;
+    private String lastname;
     @Column
-    private String BookingStatus;
+    private String idnumber;
+    @Column
+    private String idtype;
 
     public Integer getTransactionId() {
         return TransactionId;
@@ -72,27 +73,39 @@ public class TransactionRecord {
         this.passengername = passengername;
     }
 
-    public String getPassengeridentification() {
-        return passengeridentification;
+    public String getLastname() {
+        return lastname;
     }
 
-    public void setPassengeridentification(String passengeridentification) {
-        this.passengeridentification = passengeridentification;
+    public void setLastname(String lastname) {
+        this.lastname = lastname;
     }
 
-    public String getBookingStatus() {
-        return BookingStatus;
+    public String getIdnumber() {
+        return idnumber;
     }
 
-    public void setBookingStatus(String bookingStatus) {
-        BookingStatus = bookingStatus;
+    public void setIdnumber(String idnumber) {
+        this.idnumber = idnumber;
     }
+
+    public String getIdtype() {
+        return idtype;
+    }
+
+    public void setIdtype(String idtype) {
+        this.idtype = idtype;
+    }
+
     protected TransactionRecord(){}
-    public TransactionRecord(String transactionDate, String namePrefix, String passengername, String passengeridentification, String bookingStatus) {
-        TransactionDate = transactionDate;
+
+    public TransactionRecord(String transactionDate, Integer userid, String flightid, String namePrefix, String passengername, String idnumber, String idtype) {
+        this.TransactionDate = transactionDate;
+        this.userid = userid;
+        this.flightid = flightid;
         this.namePrefix = namePrefix;
         this.passengername = passengername;
-        this.passengeridentification = passengeridentification;
-        BookingStatus = bookingStatus;
+        this.idnumber = idnumber;
+        this.idtype = idtype;
     }
 }
