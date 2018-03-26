@@ -58,7 +58,6 @@
                                 <th>Arrival Date</th>
                                 <th>Arrival Time</th>
                                 <th>Seats Left</th>
-                                <th>Seat Max</th>
                                 <th>Price</th>
                             </tr>
                             </thead>
@@ -74,7 +73,6 @@
                                     <td>${flight.arrivaldate}</td>
                                     <td>${flight.arrivaltime}</td>
                                     <td>${flight.seatleft}</td>
-                                    <td>${flight.seatmax}</td>
                                     <td>${flight.price}</td>
                                     <td><form action = "/checkout" method = "post">
                                     <input class="hidden" name="flightid" value="${flight.flightid}">

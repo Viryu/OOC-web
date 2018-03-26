@@ -34,6 +34,7 @@ public class CheckoutController {
     String idnumber;
     String namePrefix;
     String idtype;
+
     @GetMapping("/checkout")
     public String getview(){
         return "checkoutpage";
@@ -47,7 +48,10 @@ public class CheckoutController {
         for (int i=0;i<passengername.length;i++){
             setSession(model,passengername[i],idnumber[i],namePrefix[i],idtype[i]);
         }
-        addUserToDatabase(auth);
+        Integer passengeramount = Integer.parseInt(request.getParameter("passengeramount"));
+        model.addAttribute("passengeramount",passengeramount);
+        System.out.println(passengeramount);
+        addUserToDatabase(auth,request, passengeramount);
         return "receiptpage";
     }
     ArrayList<String> passengernames = new ArrayList<>() ;
@@ -66,12 +70,26 @@ public class CheckoutController {
         model.addAttribute("idtype", idtype);
 
     }
-    private void addUserToDatabase(Authentication auth) {
+    private void addUserToDatabase(Authentication auth,HttpServletRequest request, Integer passengeramount) {
         DateFormat df = new SimpleDateFormat("yyyy/MM/dd");
         Date date = new Date();
         Integer userID = ur.findOneByEmail(auth.getName()).getId();
+        Integer flightid = Integer.parseInt(request.getParameter("flightid"));
+        FlightDetail flightDetail = new FlightDetail();
+        flightDetail.setStartdestination(fdr.findFlightDetailByFlightid(flightid).getStartdestination());
+        flightDetail.setEnddestination(fdr.findFlightDetailByFlightid(flightid).getEnddestination());
+        flightDetail.setDeparturedate(fdr.findFlightDetailByFlightid(flightid).getDeparturedate());
+        flightDetail.setDeparturetime(fdr.findFlightDetailByFlightid(flightid).getDeparturetime());
+        flightDetail.setArrivaldate(fdr.findFlightDetailByFlightid(flightid).getArrivaldate());
+        flightDetail.setArrivaltime(fdr.findFlightDetailByFlightid(flightid).getArrivaltime());
+        flightDetail.setSeatleft(fdr.findFlightDetailByFlightid(flightid).getSeatleft()-passengeramount);
+        flightDetail.setSeatmax(fdr.findFlightDetailByFlightid(flightid).getSeatmax());
+        flightDetail.setAirline(fdr.findFlightDetailByFlightid(flightid).getAirline());
+        flightDetail.setFlightno(fdr.findFlightDetailByFlightid(flightid).getFlightno());
+        flightDetail.setPrice(fdr.findFlightDetailByFlightid(flightid).getPrice());
         for (int i =0;i<passengernames.size();i++){
-            tr.save(new TransactionRecord(df.format(date),userID,"JT250",namePrefixes.get(i),passengernames.get(i),idnumbers.get(i),idtypes.get(i)));
+            tr.save(new TransactionRecord(df.format(date),userID,fdr.findFlightDetailByFlightid(flightid).getFlightno(),namePrefixes.get(i),passengernames.get(i),idnumbers.get(i),idtypes.get(i)));
+            fdr.save(flightDetail);
         }
     }
 }
