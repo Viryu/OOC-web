@@ -23,10 +23,10 @@
                     <form action="#" th:action="@{/login}" method="post">
                         <fieldset>
                             <div class="form-group">
-                                <input class="form-control" placeholder="E-mail" name="username" type="email" value="${email}">
+                                <input class="form-control" placeholder="E-mail" name="username" type="email" value="${email}" required>
                             </div>
                             <div class="form-group">
-                                <input class="form-control" placeholder="Password" name="password" type="password" value="${password}">
+                                <input class="form-control" placeholder="Password" name="password" type="password" value="${password}" required>
                             </div>
                             <input class="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
                             <div class="checkbox">
