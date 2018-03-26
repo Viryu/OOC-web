@@ -39,6 +39,7 @@ public class TicketingController {
 
         model.addAttribute("flightid",flightid);
         model.addAttribute("passengeramount",passengeramount);
+        System.out.println(passengeramount);
         return "checkoutpage";
     }
 }

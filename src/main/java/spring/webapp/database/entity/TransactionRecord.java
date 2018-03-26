@@ -19,7 +19,7 @@ public class TransactionRecord {
     @Column
     private String passengername;
     @Column
-    private String lastname;
+    private String bookingcode;
     @Column
     private String idnumber;
     @Column
@@ -73,12 +73,12 @@ public class TransactionRecord {
         this.passengername = passengername;
     }
 
-    public String getLastname() {
-        return lastname;
+    public String getBookingcode() {
+        return bookingcode;
     }
 
-    public void setLastname(String lastname) {
-        this.lastname = lastname;
+    public void setBookingcode(String bookingcode) {
+        this.bookingcode = bookingcode;
     }
 
     public String getIdnumber() {
