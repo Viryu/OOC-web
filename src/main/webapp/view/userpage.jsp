@@ -1,3 +1,5 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 <script src="htmldata/js/jquery-3.2.1.min.js"></script>
 <link href="htmldata/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
 <script src="htmldata/js/bootstrap.min.js"></script>
@@ -30,8 +32,15 @@
         </div>
         <div id="navbar" class="collapse navbar-collapse">
             <ul class="nav navbar-nav navbar-right">
-                <li class="active"><a href="index.html">Welcome, User</a></li>
-                <li><a href="login.html">Logout</a></li>
+                <li class="active"><a href="index.html">Welcome, <sec:authentication property="name"/></a></li>
+                <sec:authorize access="isAuthenticated()">
+                    <li>
+                        <form action="/logout" id="logout" method="post">
+                            <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
+                            <input type="submit" value="Logout" class="btn btn-danger btn-block">
+                        </form>
+                    </li>
+                </sec:authorize>
             </ul>
         </div>
     </div>
@@ -42,7 +51,7 @@
     <div class="container">
         <div class="row">
             <div class="col-md-10">
-                <h1><span class="glyphicon glyphicon-cog" aria-hidden="true"></span> User <small>Manage Your Profile</small></h1>
+                <h1><span class="glyphicon glyphicon-cog" aria-hidden="true"></span> <sec:authentication property="name"/> <small>Manage Your Profile</small></h1>
             </div>
             <div class="col-md-2">
             </div>
@@ -83,32 +92,32 @@
                         </div>
                         <div class="row">
                             <div class="col-md-6">
-                                <label>First Name:</label>
+                                <label>First Name: ${userinfo.firstName}</label>
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-md-6">
-                                <label>Last Name:</label>
+                                <label>Last Name: ${userinfo.lastName}</label>
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-md-6">
-                                <label>Date of Birth:</label>
+                                <label>Date of Birth: ${userinfo.dob}</label>
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-md-6">
-                                <label>Email:</label>
+                                <label>Email: ${user.email}</label>
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-md-6">
-                                <label>Phone Number:</label>
+                                <label>Phone Number: ${userinfo.phoneNumber}</label>
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-md-6">
-                                <label>Current Balance: </label>
+                                <label>Current Balance: ${userbalance.balance} </label>
                             </div>
                         </div>
                     </div>
@@ -118,7 +127,7 @@
                         <h3 class="panel-title">Top Up Balance</h3>
                     </div>
                     <div class="panel-body">
-                        <form action="/moderatorinsert" method="post" class="form-horizontal">
+                        <form action="/inputbalance" method="post" class="form-horizontal">
                             <div class="form-group">
                                 <div class="col-md-6">
                                     <label>Top-Up Method</label>
@@ -130,7 +139,7 @@
                             <div class="form-group">
                                 <div class="col-md-6">
                                     <label>Amount Of Top-Up</label>
-                                    <input type="number" class="form-control" name="topUpAmount">
+                                    <input type="number" class="form-control" name="inputamount" value="${inputamount}">
                                 </div>
                             </div>
                             <div class="form-group">
@@ -141,7 +150,8 @@
                             </div>
                             <div class="form-group">
                                 <div class="col-md-4">
-                                    <button type="button" class="btn btn-primary">Top Up Balance</button>
+                                    <input class="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
+                                    <button type="submit" class="btn btn-primary">Top Up Balance</button>
                                 </div>
                             </div>
                         </form>

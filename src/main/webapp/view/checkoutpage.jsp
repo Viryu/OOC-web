@@ -73,7 +73,7 @@
                 <div class="row">
                     <div class="col-sm-2">
                         <input class="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
-                        <button type="button" class="btn btn-primary">Purchase Ticket</button>
+                        <button type="submit" class="btn btn-primary">Purchase Ticket</button>
                     </div>
                 </div>
 
