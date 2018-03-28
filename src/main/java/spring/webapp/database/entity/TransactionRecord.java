@@ -13,7 +13,7 @@ public class TransactionRecord {
     @Column
     private Integer userid;
     @Column
-    private String flightid;
+    private String flightno;
     @Column
     private String namePrefix;
     @Column
@@ -50,12 +50,12 @@ public class TransactionRecord {
         this.userid = userid;
     }
 
-    public String getFlightid() {
-        return flightid;
+    public String getFlightno() {
+        return flightno;
     }
 
-    public void setFlightid(String flightid) {
-        this.flightid = flightid;
+    public void setFlightid(String flightno) {
+        this.flightno = flightno;
     }
 
     public String getNamePrefix() {
@@ -108,10 +108,10 @@ public class TransactionRecord {
         this.pricetopay = pricetopay;
     }
 
-    public TransactionRecord(String transactionDate, Integer userid, String flightid, String namePrefix, String passengername, String bookingcode, String idnumber, String idtype, float pricetopay) {
+    public TransactionRecord(String transactionDate, Integer userid, String fightno, String namePrefix, String passengername, String bookingcode, String idnumber, String idtype, float pricetopay) {
         TransactionDate = transactionDate;
         this.userid = userid;
-        this.flightid = flightid;
+        this.flightno = flightno;
         this.namePrefix = namePrefix;
         this.passengername = passengername;
         this.bookingcode = bookingcode;

@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.jpa.domain.Specifications;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import spring.webapp.database.entity.FlightDetail;
 import spring.webapp.database.repository.FlightDetailRepository;
@@ -26,8 +27,9 @@ public class ReceiptController {
     @Autowired
     UserRepository ur;
     @GetMapping("/receipt")
-    public String receipt(Authentication auth, HttpServletRequest request){
+    public String receipt(Authentication auth, HttpServletRequest request,Model model){
         Integer userID = ur.findOneByEmail(auth.getName()).getId();
+        Integer flightid = Integer.parseInt(request.getParameter("flightid"));
         DateFormat df = new SimpleDateFormat("yyyy/MM/dd");
         Date date = new Date();
         FlightDetailSpecification spec1 = new FlightDetailSpecification(new SearchCriteria("userid", ":", userID.toString()));
@@ -35,6 +37,7 @@ public class ReceiptController {
         request.getSession().setAttribute("flight",fdr.findAll(Specifications.where(spec1).and(spec2)));
         request.getSession().setAttribute("price",tr.findTransactionRecordByUserid(userID).getPricetopay());
         request.getSession().setAttribute("transaction",tr.findAll());
+        model.addAttribute("flight",tr.findTransactionRecordByFlightno(fdr.findFlightDetailByFlightid(flightid).getFlightno()));
         return "receiptpage";
     }
 }

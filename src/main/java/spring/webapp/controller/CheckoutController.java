@@ -61,6 +61,7 @@ public class CheckoutController {
         Integer flightid = Integer.parseInt(request.getParameter("flightid"));
         float price = Float.parseFloat(request.getParameter("pricetopay"));
         FlightDetail flightDetail = new FlightDetail();
+        flightDetail.setFlightid(flightid);
         flightDetail.setStartdestination(fdr.findFlightDetailByFlightid(flightid).getStartdestination());
         flightDetail.setEnddestination(fdr.findFlightDetailByFlightid(flightid).getEnddestination());
         flightDetail.setDeparturedate(fdr.findFlightDetailByFlightid(flightid).getDeparturedate());
@@ -73,11 +74,18 @@ public class CheckoutController {
         flightDetail.setFlightno(fdr.findFlightDetailByFlightid(flightid).getFlightno());
         flightDetail.setPrice(fdr.findFlightDetailByFlightid(flightid).getPrice());
         bookingcode = bookingcoderandom();
-        for (int i =0;i<passengernames.size();i++){
-            tr.save(new TransactionRecord(df.format(date),userID,fdr.findFlightDetailByFlightid(flightid).getFlightno(),namePrefixes.get(i),passengernames.get(i),idnumbers.get(i),idtypes.get(i),bookingcode,price));
+        float newbalance = userbalance.findUserBalanceByUserid(userID).getBalance()-price;
+        if(userbalance.findUserBalanceByUserid(userID).getBalance()<price){
+            return "checkoutpage";
         }
-        fdr.save(flightDetail);
-        return "receiptpage";
+        else{
+            for (int i =0;i<passengeramount;i++){
+                tr.save(new TransactionRecord(df.format(date),userID,fdr.findFlightDetailByFlightid(flightid).getFlightno(),namePrefixes.get(i),passengernames.get(i),bookingcode,idnumbers.get(i),idtypes.get(i),price));
+            }
+            userbalance.save(new UserBalance(userID,newbalance));
+            fdr.save(flightDetail);
+            return "receiptpage";
+        }
     }
     ArrayList<String> passengernames = new ArrayList<>() ;
     ArrayList<String> idnumbers = new ArrayList<>();

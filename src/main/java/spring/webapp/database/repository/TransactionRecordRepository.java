@@ -7,4 +7,5 @@ import spring.webapp.database.entity.TransactionRecord;
 @Repository
 public interface TransactionRecordRepository extends CrudRepository<TransactionRecord, Long> {
     TransactionRecord findTransactionRecordByUserid(Integer userid);
+    TransactionRecord findTransactionRecordByFlightno(String flightno);
 }
