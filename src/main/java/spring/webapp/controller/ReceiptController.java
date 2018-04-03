@@ -12,6 +12,7 @@ import spring.webapp.database.repository.TransactionRecordRepository;
 import spring.webapp.database.repository.UserRepository;
 import spring.webapp.specification.FlightDetailSpecification;
 import spring.webapp.specification.SearchCriteria;
+import spring.webapp.specification.TransactionRecordSpecification;
 
 import javax.servlet.http.HttpServletRequest;
 import java.text.DateFormat;
@@ -24,20 +25,11 @@ public class ReceiptController {
     FlightDetailRepository fdr;
     @Autowired
     TransactionRecordRepository tr;
-    @Autowired
-    UserRepository ur;
-    @GetMapping("/receipt")
-    public String receipt(Authentication auth, HttpServletRequest request,Model model){
-        Integer userID = ur.findOneByEmail(auth.getName()).getId();
-        Integer flightid = Integer.parseInt(request.getParameter("flightid"));
-        DateFormat df = new SimpleDateFormat("yyyy/MM/dd");
-        Date date = new Date();
-        FlightDetailSpecification spec1 = new FlightDetailSpecification(new SearchCriteria("userid", ":", userID.toString()));
-        FlightDetailSpecification spec2 = new FlightDetailSpecification(new SearchCriteria("transactiondate", ":",df.format(date)));
-        request.getSession().setAttribute("flight",fdr.findAll(Specifications.where(spec1).and(spec2)));
-        request.getSession().setAttribute("price",tr.findTransactionRecordByUserid(userID).getPricetopay());
-        request.getSession().setAttribute("transaction",tr.findAll());
-        model.addAttribute("flight",tr.findTransactionRecordByFlightno(fdr.findFlightDetailByFlightid(flightid).getFlightno()));
+    @GetMapping("/receiptdetail")
+    public String receiptdetail(HttpServletRequest request){
+        String bookingcode = request.getParameter("bookingcode");
+        request.getSession().setAttribute("bookingcode",bookingcode);
+        System.out.println(bookingcode);
         return "receiptpage";
     }
 }

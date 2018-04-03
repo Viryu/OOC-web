@@ -10,4 +10,5 @@ import java.util.List;
 @Repository
 public interface FlightDetailRepository extends JpaRepository<FlightDetail, Long>, JpaSpecificationExecutor<FlightDetail> {
     FlightDetail findFlightDetailByFlightid(Integer flightid);
+    FlightDetail findFlightDetailByFlightno(String flightno);
 }

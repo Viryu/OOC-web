@@ -48,21 +48,30 @@
                         <table class="table table-hover">
                             <thead>
                             <tr>
-                                <th>No.</th>
-                                <th>Passenger Name</th>
-                                <th>Purchase Date</th>
                                 <th><form action="" method="post">
-                                    <button type="submit" class="btn btn-primary">Go To Receipt</button>
+                                    <button type="submit" class="btn btn-primary">Home</button>
                                 </form></th>
+                                <th>Booking Code</th>
+                                <th>Flight Number</th>
+                                <th>Price</th>
                             </tr>
                             </thead>
                             <tbody>
+                            <c:forEach var="flights" items="${flight}">
                             <tr>
-                                <th>(No.)</th>
-                                <th>(Passenger Name)</th>
-                                <th>(Purchase Date)</th>
+                                <th></th>
+                                <th>${flights.bookingcode}</th>
+                                <th>${flights.flightno}</th>
+                                <th>${flights.pricetopay}</th>
+                                <th><form action="/receiptdetail" method="post">
+                                    <input type="hidden" name="flightno" value="${flights.flightno}">
+                                    <input type="hidden" name="bookingcode" value="${flights.bookingcode}">
+                                    <input class="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
+                                    <button type="submit" class="btn btn-primary">Go To Receipt</button>
+                                </form></th>
                             </tr>
                             </tbody>
+                            </c:forEach>
                         </table>
                     </div>
                 </div>

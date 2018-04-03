@@ -38,6 +38,7 @@
     <div class="w3-container w3-teal"><h1>Check Out</h1></div>
     <div class="panel panel-default" id="passengerContainer">
         <div class="panel-body">
+            <h5>${errMsg}</h5>
             <form class="form-horizontal" action="/receipt" method="post">
             <c:forEach begin="1" end="${passengeramount}" varStatus="loop">
             <label >Passenger Name</label>

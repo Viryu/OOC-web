@@ -36,7 +36,7 @@ public class CheckoutController {
     String namePrefix;
     String idtype;
     String bookingcode;
-
+    String errMsg;
     @GetMapping("/checkout")
     public String getview(){
         return "checkoutpage";
@@ -76,6 +76,8 @@ public class CheckoutController {
         bookingcode = bookingcoderandom();
         float newbalance = userbalance.findUserBalanceByUserid(userID).getBalance()-price;
         if(userbalance.findUserBalanceByUserid(userID).getBalance()<price){
+            errMsg = "Not enough balance";
+            request.getSession().setAttribute("errMsg",errMsg);
             return "checkoutpage";
         }
         else{
@@ -84,7 +86,7 @@ public class CheckoutController {
             }
             userbalance.save(new UserBalance(userID,newbalance));
             fdr.save(flightDetail);
-            return "receiptpage";
+            return "redirect:/";
         }
     }
     ArrayList<String> passengernames = new ArrayList<>() ;

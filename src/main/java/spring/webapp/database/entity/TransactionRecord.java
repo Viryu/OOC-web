@@ -9,7 +9,7 @@ public class TransactionRecord {
     @GeneratedValue(strategy= GenerationType.AUTO)
     private Integer TransactionId;
     @Column(columnDefinition = "date")
-    private String TransactionDate;
+    private String transactiondate;
     @Column
     private Integer userid;
     @Column
@@ -34,12 +34,16 @@ public class TransactionRecord {
         TransactionId = transactionId;
     }
 
-    public String getTransactionDate() {
-        return TransactionDate;
+    public String getTransactiondate() {
+        return transactiondate;
     }
 
-    public void setTransactionDate(String transactionDate) {
-        TransactionDate = transactionDate;
+    public void setTransactiondate(String transactiondate) {
+        this.transactiondate = transactiondate;
+    }
+
+    public void setFlightno(String flightno) {
+        this.flightno = flightno;
     }
 
     public Integer getUserid() {
@@ -108,8 +112,8 @@ public class TransactionRecord {
         this.pricetopay = pricetopay;
     }
 
-    public TransactionRecord(String transactionDate, Integer userid, String fightno, String namePrefix, String passengername, String bookingcode, String idnumber, String idtype, float pricetopay) {
-        TransactionDate = transactionDate;
+    public TransactionRecord(String transactiondate, Integer userid, String flightno, String namePrefix, String passengername, String bookingcode, String idnumber, String idtype, float pricetopay) {
+        this.transactiondate = transactiondate;
         this.userid = userid;
         this.flightno = flightno;
         this.namePrefix = namePrefix;

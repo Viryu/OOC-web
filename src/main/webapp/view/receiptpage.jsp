@@ -1,3 +1,4 @@
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <script src="htmldata/js/jquery-3.2.1.min.js"></script>
 <link href="htmldata/css/bootstrap.css" rel="stylesheet" id="bootstrap-css">
@@ -40,8 +41,8 @@
             </div>
             <div class="panel-body">
                 <div class="row">
-                    <input type="hidden" name="pricetopay" value="${pricetopay}">
-                    <input type="hidden" name="userid" value="${userid}">
+                    <%--<input type="hidden" name="pricetopay" value="${pricetopay}">--%>
+                    <%--<input type="hidden" name="userid" value="${userid}">--%>
                     <div class="col-md-6">
                         <i class="fa fa-plane"></i><label>${flight.startdestination}</label><i class="fa fa-long-arrow-right"></i><label>${flight.enddestination}</label>
                     </div>
@@ -66,18 +67,18 @@
                 </div>
                 <div class="row">
                     <div class="col-md-6">
-                        <label>(Booking Code)</label>
+                        <label>${bookingcode}</label>
                     </div>
                 </div>
                 <br>
                 <div class="row">
                     <div class="col-md-6">
-                        <label>Total Price: ${price}</label>
+                        <label>Total Price: ${flights.pricetopay}</label>
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-md-6">
-                        <label>Purchase Date: ${transaction.transactiondate}</label>
+                        <label>Purchase Date: ${flights.transactiondate}</label>
                     </div>
                 </div>
                 <br>
@@ -91,7 +92,14 @@
 
                 <div class="row">
                     <div class="col-md-6">
-                        <label>1.(Passenger 1)</label>
+                        <c:forEach var="passenger" items="${passenger}">
+                        <ul>
+                            <li>
+                                ${passenger.namePrefix}
+                                ${passenger.passengername}
+                            </li>
+                        </ul>
+                        </c:forEach>
                     </div>
                 </div>
 
