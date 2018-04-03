@@ -31,6 +31,9 @@
             <img src="htmldata/img/logowhite.png" alt="logo" style="Height: 35px;width: 100px;">
         </div>
         <div id="navbar" class="collapse navbar-collapse">
+            <ul class = "nav navbar-nav navbar-left">
+                <li><a href="/" class="font-weight-bold">Home</a></li>
+            </ul>
             <ul class="nav navbar-nav navbar-right">
                 <li class="active"><a href="index.html">Welcome, <sec:authentication property="name"/></a></li>
                 <sec:authorize access="isAuthenticated()">
