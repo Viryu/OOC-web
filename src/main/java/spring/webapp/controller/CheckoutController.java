@@ -50,13 +50,18 @@ public class CheckoutController {
         for (int i=0;i<passengername.length;i++){
             setSession(model,passengername[i],idnumber[i],namePrefix[i],idtype[i]);
         }
+        model.addAttribute("pricetopay");
+        model.addAttribute("flightid");
+        model.addAttribute("userid");
         System.out.println(request.getParameter("passengeramount"));
         Integer passengeramount = Integer.parseInt(request.getParameter("passengeramount"));
         DateFormat df = new SimpleDateFormat("yyyy/MM/dd");
         Date date = new Date();
         Integer userID = ur.findOneByEmail(auth.getName()).getId();
         Integer flightid = Integer.parseInt(request.getParameter("flightid"));
+        float price = Float.parseFloat(request.getParameter("pricetopay"));
         FlightDetail flightDetail = new FlightDetail();
+        flightDetail.setFlightid(flightid);
         flightDetail.setStartdestination(fdr.findFlightDetailByFlightid(flightid).getStartdestination());
         flightDetail.setEnddestination(fdr.findFlightDetailByFlightid(flightid).getEnddestination());
         flightDetail.setDeparturedate(fdr.findFlightDetailByFlightid(flightid).getDeparturedate());
@@ -69,12 +74,18 @@ public class CheckoutController {
         flightDetail.setFlightno(fdr.findFlightDetailByFlightid(flightid).getFlightno());
         flightDetail.setPrice(fdr.findFlightDetailByFlightid(flightid).getPrice());
         bookingcode = bookingcoderandom();
-        for (int i =0;i<passengernames.size();i++){
-            tr.save(new TransactionRecord(df.format(date),userID,fdr.findFlightDetailByFlightid(flightid).getFlightno(),namePrefixes.get(i),passengernames.get(i),idnumbers.get(i),idtypes.get(i),bookingcode));
-
+        float newbalance = userbalance.findUserBalanceByUserid(userID).getBalance()-price;
+        if(userbalance.findUserBalanceByUserid(userID).getBalance()<price){
+            return "checkoutpage";
         }
-        fdr.save(flightDetail);
-        return "receiptpage";
+        else{
+            for (int i =0;i<passengeramount;i++){
+                tr.save(new TransactionRecord(df.format(date),userID,fdr.findFlightDetailByFlightid(flightid).getFlightno(),namePrefixes.get(i),passengernames.get(i),bookingcode,idnumbers.get(i),idtypes.get(i),price));
+            }
+            userbalance.save(new UserBalance(userID,newbalance));
+            fdr.save(flightDetail);
+            return "receiptpage";
+        }
     }
     ArrayList<String> passengernames = new ArrayList<>() ;
     ArrayList<String> idnumbers = new ArrayList<>();
