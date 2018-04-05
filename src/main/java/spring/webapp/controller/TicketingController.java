@@ -39,6 +39,7 @@ public class TicketingController {
         model.addAttribute("pricetopay",pricetopay);
         model.addAttribute("flightid",flightid);
         model.addAttribute("passengeramount",passengeramount);
+        request.getSession().removeAttribute("errMsg");
         return "checkoutpage";
     }
 }

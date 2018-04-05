@@ -43,6 +43,10 @@ public class CheckoutController {
     String bookingcode;
     String errMsg;
 
+    private Integer passengeramount = null;
+    private Integer flightid = null;
+    private float price = -1;
+
     @GetMapping("/checkout")
     public String getview(){
         return "checkoutpage";
@@ -54,6 +58,7 @@ public class CheckoutController {
         Balance balance = (Balance) context.getBean("balance");
         float newBalance = balance.topUp(Float.parseFloat(amount));
         request.getSession().setAttribute("userbalance", newBalance);
+        setOrderDetails(request);
         return "checkoutpage";
     }
 
@@ -63,19 +68,17 @@ public class CheckoutController {
                                @RequestParam(value="passengername[]")String[] passengername,
                                @RequestParam(value ="idtype[]" )String[] idtype,
                                @RequestParam(value="idnumber[]")String[] idnumber){
+        passengernames = new ArrayList<>() ;
+        idnumbers = new ArrayList<>();
+        namePrefixes = new ArrayList<>();
+        idtypes = new ArrayList<>();
         for (int i=0;i<passengername.length;i++){
             setSession(model,passengername[i],idnumber[i],namePrefix[i],idtype[i]);
         }
-        model.addAttribute("pricetopay");
-        model.addAttribute("flightid");
-        model.addAttribute("userid");
-        System.out.println(request.getParameter("passengeramount"));
-        Integer passengeramount = Integer.parseInt(request.getParameter("passengeramount"));
+        setOrderDetails(request);
         DateFormat df = new SimpleDateFormat("yyyy/MM/dd");
         Date date = new Date();
         Integer userID = ur.findOneByEmail(auth.getName()).getId();
-        Integer flightid = Integer.parseInt(request.getParameter("flightid"));
-        float price = Float.parseFloat(request.getParameter("pricetopay"));
         FlightDetail flightDetail = new FlightDetail();
         flightDetail.setFlightid(flightid);
         flightDetail.setStartdestination(fdr.findFlightDetailByFlightid(flightid).getStartdestination());
@@ -105,10 +108,20 @@ public class CheckoutController {
             return "redirect:/userReceipt";
         }
     }
-    ArrayList<String> passengernames = new ArrayList<>() ;
-    ArrayList<String> idnumbers = new ArrayList<>();
-    ArrayList<String> namePrefixes = new ArrayList<>();
-    ArrayList<String> idtypes = new ArrayList<>();
+
+    private void setOrderDetails(HttpServletRequest request) {
+        String passengeramount = request.getParameter("passengeramount");
+        if (!passengeramount.isEmpty()) this.passengeramount =  Integer.parseInt(passengeramount);
+        String flightid = request.getParameter("flightid");
+        if (!flightid.isEmpty()) this.flightid = Integer.parseInt(flightid);
+        String pricetopay = request.getParameter("pricetopay");
+        if (!pricetopay.isEmpty()) this.price = Float.parseFloat(pricetopay);
+    }
+
+    private ArrayList<String> passengernames;
+    private ArrayList<String> idnumbers;
+    private ArrayList<String> namePrefixes;
+    private ArrayList<String> idtypes;
     private void setSession(Model model,String passengername,String idnumber,String namePrefix,String idtype) {
         this.namePrefixes.add(namePrefix);
         this.passengernames.add(passengername);
@@ -125,11 +138,13 @@ public class CheckoutController {
         String SALTCHARS = "ABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890";
         StringBuilder salt = new StringBuilder();
         Random rnd = new Random();
-        while (salt.length() < 6) { // length of the random string.
-            int index = (int) (rnd.nextFloat() * SALTCHARS.length());
-            salt.append(SALTCHARS.charAt(index));
+        while (true) {
+            while (salt.length() < 6) { // length of the random string.
+                int index = (int) (rnd.nextFloat() * SALTCHARS.length());
+                salt.append(SALTCHARS.charAt(index));
+            }
+            String saltStr = salt.toString();
+            if (tr.findTransactionRecordByBookingcode(saltStr) == null) return saltStr;
         }
-        String saltStr = salt.toString();
-        return saltStr;
     }
 }
