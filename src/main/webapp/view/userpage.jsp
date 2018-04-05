@@ -193,29 +193,29 @@
                         <h3 class="panel-title">Update Personal Information</h3>
                     </div>
                     <div class="panel-body">
-                        <form action="" method="post" class="form-horizontal" onsubmit="return validate()">
+                        <form action="/user=updateinfo" method="post" class="form-horizontal" onsubmit="return validate()">
                             <div class="form-group">
                                 <div class="col-md-6">
                                     <label>First Name</label>
-                                    <input type="text" class="form-control" name="firstNameUpdate" required minlength="3">
+                                    <input type="text" class="form-control" name="firstNameUpdate" value="${userinfo.firstName}" required minlength="3">
                                 </div>
                             </div>
                             <div class="form-group">
                                 <div class="col-md-6">
                                     <label>Last Name</label>
-                                    <input type="text" class="form-control" name="lastNameUpdate" required minlength="3">
+                                    <input type="text" class="form-control" name="lastNameUpdate" value="${userinfo.lastName}" required minlength="3">
                                 </div>
                             </div>
                             <div class="form-group">
                                 <div class="col-md-6">
                                     <label>Date of Birth</label>
-                                    <input type="date" class="form-control" name="dobUpdate" id="dobUpdate" required>
+                                    <input type="date" class="form-control" name="dobUpdate" value="${userinfo.dob}"  id="dobUpdate" required>
                                 </div>
                             </div>
                             <div class="form-group">
                                 <div class="col-md-6">
                                     <label>Phone Number</label>
-                                    <input type="text" class="form-control" name="phoneNumberUpdate" required minlength="10" maxlength="12">
+                                    <input type="text" class="form-control" name="phoneNumberUpdate" value="${userinfo.phoneNumber}"  required minlength="10" maxlength="12">
                                 </div>
                             </div>
                             <div class="form-group">
