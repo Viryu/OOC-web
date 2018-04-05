@@ -35,12 +35,10 @@ public class BookingController {
         FlightDetailSpecification spec2 = new FlightDetailSpecification(new SearchCriteria("startdestination", ":", startdestination));
         FlightDetailSpecification spec3 = new FlightDetailSpecification(new SearchCriteria("enddestination", ":", enddestination));
         FlightDetailSpecification spec4 = new FlightDetailSpecification(new SearchCriteria("departuredate", ":", departuredate));
-        List<FlightDetail> flightTickets = fdr.findAll(Specifications.where(spec1).and(spec2).and(spec3).and(spec4));
-//            if (flightTickets != null) System.out.println(flightTickets.get(0).getAirline());
-        updateAllFlightsPrice(flightTickets, Integer.parseInt(passengeramount));
-        request.getSession().setAttribute("flighttickets", flightTickets);
-        model.addAttribute("flightid");
-        model.addAttribute("passengeramount",passengeramount);
+        List<FlightDetail> flighttickets = fdr.findAll(Specifications.where(spec1).and(spec2).and(spec3).and(spec4));
+        updateAllFlightsPrice(flighttickets, Integer.parseInt(passengeramount));
+        request.getSession().setAttribute("flighttickets", flighttickets);
+        request.getSession().setAttribute("passengeramount",Integer.parseInt(passengeramount));
         return "ticketview";
     }
 

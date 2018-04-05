@@ -74,10 +74,6 @@
                 <div class="row">
                     <div class="col-sm-2">
                         <input class="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
-                        <input type="hidden" name="flightid" value="${flightid}">
-                        <input type="hidden" name="userid" value="${userid}">
-                        <input type="hidden" name="passengeramount" value="${passengeramount}">
-                        <input type="hidden" name="pricetopay" value="${pricetopay}">
                         <button type="submit" class="btn btn-primary">Purchase Ticket</button>
                     </div>
                 </div>
@@ -91,7 +87,7 @@
                     <span>Ticket Details:</span>
                 </div>
                 <div class="col-sm-8">
-                    <span>${flightss.startdestination}</span><i class="fa fa-long-arrow-right"></i><span>${flightss.enddestination}</span>
+                    <span>${flightid.startdestination}</span><i class="fa fa-long-arrow-right"></i><span>${flightid.enddestination}</span>
                 </div>
             </div>
             <div class="row">
@@ -149,10 +145,6 @@
                         </div>
                         <div class="form-group">
                             <div class="col-md-4">
-                                <input type="hidden" name="flightid" value="${flightid}">
-                                <input type="hidden" name="userid" value="${userid}">
-                                <input type="hidden" name="passengeramount" value="${passengeramount}">
-                                <input type="hidden" name="pricetopay" value="${pricetopay}">
                                 <input class="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
                                 <button type="submit" class="btn btn-primary">Top Up Balance</button>
                             </div>

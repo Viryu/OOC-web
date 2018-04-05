@@ -36,16 +36,6 @@ public class CheckoutController {
     TransactionRecordRepository tr;
     @Autowired
     WebApplicationContext context;
-    String passengername;
-    String idnumber;
-    String namePrefix;
-    String idtype;
-    String bookingcode;
-    String errMsg;
-
-    private Integer passengeramount = null;
-    private Integer flightid = null;
-    private float price = -1;
 
     @GetMapping("/checkout")
     public String getview(){
@@ -58,82 +48,45 @@ public class CheckoutController {
         Balance balance = (Balance) context.getBean("balance");
         float newBalance = balance.topUp(Float.parseFloat(amount));
         request.getSession().setAttribute("userbalance", newBalance);
-        setOrderDetails(request);
         return "checkoutpage";
     }
 
     @PostMapping("/receipt")
     public String viewcheckout(HttpServletRequest request,Authentication auth, Model model,
-                               @RequestParam(value="namePrefix[]")String[] namePrefix,
-                               @RequestParam(value="passengername[]")String[] passengername,
-                               @RequestParam(value ="idtype[]" )String[] idtype,
-                               @RequestParam(value="idnumber[]")String[] idnumber){
-        passengernames = new ArrayList<>() ;
-        idnumbers = new ArrayList<>();
-        namePrefixes = new ArrayList<>();
-        idtypes = new ArrayList<>();
-        for (int i=0;i<passengername.length;i++){
-            setSession(model,passengername[i],idnumber[i],namePrefix[i],idtype[i]);
-        }
-        setOrderDetails(request);
-        DateFormat df = new SimpleDateFormat("yyyy/MM/dd");
-        Date date = new Date();
+                               @RequestParam(value="namePrefix[]")String[] namePrefixes,
+                               @RequestParam(value="passengername[]")String[] passengernames,
+                               @RequestParam(value ="idtype[]" )String[] idtypes,
+                               @RequestParam(value="idnumber[]")String[] idnumbers){
+        FlightDetail flightDetail =  (FlightDetail) request.getSession().getAttribute("flightid");
         Integer userID = ur.findOneByEmail(auth.getName()).getId();
-        FlightDetail flightDetail = new FlightDetail();
-        flightDetail.setFlightid(flightid);
-        flightDetail.setStartdestination(fdr.findFlightDetailByFlightid(flightid).getStartdestination());
-        flightDetail.setEnddestination(fdr.findFlightDetailByFlightid(flightid).getEnddestination());
-        flightDetail.setDeparturedate(fdr.findFlightDetailByFlightid(flightid).getDeparturedate());
-        flightDetail.setDeparturetime(fdr.findFlightDetailByFlightid(flightid).getDeparturetime());
-        flightDetail.setArrivaldate(fdr.findFlightDetailByFlightid(flightid).getArrivaldate());
-        flightDetail.setArrivaltime(fdr.findFlightDetailByFlightid(flightid).getArrivaltime());
-        flightDetail.setSeatleft(fdr.findFlightDetailByFlightid(flightid).getSeatleft()-passengeramount);
-        flightDetail.setSeatmax(fdr.findFlightDetailByFlightid(flightid).getSeatmax());
-        flightDetail.setAirline(fdr.findFlightDetailByFlightid(flightid).getAirline());
-        flightDetail.setFlightno(fdr.findFlightDetailByFlightid(flightid).getFlightno());
-        flightDetail.setPrice(fdr.findFlightDetailByFlightid(flightid).getPrice());
-        bookingcode = bookingcoderandom();
-        float newbalance = userbalance.findUserBalanceByUserid(userID).getBalance()-price;
-        if(userbalance.findUserBalanceByUserid(userID).getBalance()<price){
-            errMsg = "Not enough balance";
+        float currentbalance = userbalance.findUserBalanceByUserid(userID).getBalance();
+        float price = (float) request.getSession().getAttribute("pricetopay");
+
+        if (userbalance.findUserBalanceByUserid(userID).getBalance() < price) {
+            String errMsg = "Not enough balance";
             request.getSession().setAttribute("errMsg",errMsg);
             return "checkoutpage";
         }
-        else{
-            for (int i =0;i<passengeramount;i++){
-                tr.save(new TransactionRecord(df.format(date),userID,fdr.findFlightDetailByFlightid(flightid).getFlightno(),namePrefixes.get(i),passengernames.get(i),bookingcode,idnumbers.get(i),idtypes.get(i),price));
-            }
+        else {
+            String bookingcode = bookingcoderandom();
+            Integer passengeramount = (Integer) request.getSession().getAttribute("passengeramount");
+            float newbalance = currentbalance - price;
             userbalance.save(new UserBalance(userID,newbalance));
+            for (int i = 0; i<passengeramount; i++) {
+                tr.save(new TransactionRecord(getCurrentTime(), userID, flightDetail.getFlightno(),namePrefixes[i],passengernames[i],bookingcode,idnumbers[i],idtypes[i],price));
+            }
+            flightDetail.setSeatleft(flightDetail.getSeatleft() - passengeramount);
             fdr.save(flightDetail);
             return "redirect:/userReceipt";
         }
     }
 
-    private void setOrderDetails(HttpServletRequest request) {
-        String passengeramount = request.getParameter("passengeramount");
-        if (!passengeramount.isEmpty()) this.passengeramount =  Integer.parseInt(passengeramount);
-        String flightid = request.getParameter("flightid");
-        if (!flightid.isEmpty()) this.flightid = Integer.parseInt(flightid);
-        String pricetopay = request.getParameter("pricetopay");
-        if (!pricetopay.isEmpty()) this.price = Float.parseFloat(pricetopay);
+    private String getCurrentTime(){
+        DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd");
+        Date date = new Date();
+        return dateFormat.format(date);
     }
 
-    private ArrayList<String> passengernames;
-    private ArrayList<String> idnumbers;
-    private ArrayList<String> namePrefixes;
-    private ArrayList<String> idtypes;
-    private void setSession(Model model,String passengername,String idnumber,String namePrefix,String idtype) {
-        this.namePrefixes.add(namePrefix);
-        this.passengernames.add(passengername);
-        this.idnumbers.add(idnumber);
-        this.idtypes.add(idtype);
-
-        model.addAttribute("passengername", passengername);
-        model.addAttribute("idnumber", idnumber);
-        model.addAttribute("namePrefix", namePrefix);
-        model.addAttribute("idtype", idtype);
-
-    }
     private String bookingcoderandom(){
         String SALTCHARS = "ABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890";
         StringBuilder salt = new StringBuilder();

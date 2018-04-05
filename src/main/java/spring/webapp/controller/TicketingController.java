@@ -25,21 +25,20 @@ public class TicketingController {
     public String view(){
         return "ticketpage";
     }
+
     @PostMapping("/checkout")
     public String getview(HttpServletRequest request, Authentication auth, Model model){
         Integer flightid = Integer.parseInt(request.getParameter("flightid"));
-        Integer passengeramount = Integer.parseInt(request.getParameter("passengeramount"));
-
         Integer userID = ur.findOneByEmail(auth.getName()).getId();
-        request.getSession().setAttribute("flightss",fdr.findFlightDetailByFlightid(flightid));
+        float pricetopay = Float.parseFloat(request.getParameter("pricetopay"));
+
+        request.getSession().setAttribute("flightid",fdr.findFlightDetailByFlightid(flightid)); // the selected flight's flight detail
         request.getSession().setAttribute("userbalance",userbalance.findUserBalanceByUserid(userID).getBalance());
-        float pricetopay = passengeramount * fdr.findFlightDetailByFlightid(flightid).getPrice();
-        request.getSession().setAttribute("passengeramount",passengeramount);
         request.getSession().setAttribute("pricetopay",pricetopay);
-        model.addAttribute("pricetopay",pricetopay);
-        model.addAttribute("flightid",flightid);
-        model.addAttribute("passengeramount",passengeramount);
+
+        // In case error message was set from a previous order
         request.getSession().removeAttribute("errMsg");
+
         return "checkoutpage";
     }
 }
