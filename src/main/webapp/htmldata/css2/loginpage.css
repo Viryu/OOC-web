@@ -1,7 +1,3 @@
-.container{
-	margin: 10%;
-}
-
 .alert {
 	height: 30px;
 	line-height:30px;
@@ -11,4 +7,8 @@ body{
 	background-image: url("loginbackground.jpg");
 	background-repeat: no-repeat;
 	background-size: cover;
+}
+
+.centered-form{
+	margin-top: 60px;
 }
