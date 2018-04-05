@@ -38,8 +38,8 @@ public class ModeratorController {
 
 
     @GetMapping("/moderatormenu")
-    public String show(Model model){
-        model.addAttribute("record",recordRepository.findAll());
+    public String show(HttpServletRequest request){
+        request.getSession().setAttribute("record",recordRepository.findAll());
         return "moderatorpage";
     }
 
