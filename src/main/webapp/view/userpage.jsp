@@ -35,7 +35,7 @@
                 <li><a href="/" class="font-weight-bold">Home</a></li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
-                <li class="active"><a href="index.html">Welcome, <sec:authentication property="name"/></a></li>
+                <li class="active"><a href="/user">Welcome, <sec:authentication property="name"/></a></li>
                 <sec:authorize access="isAuthenticated()">
                     <li>
                         <form action="/logout" id="logout" method="post">
