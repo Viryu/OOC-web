@@ -80,6 +80,7 @@
                     <button class="list-group-item active main-color-bg" onclick="dashboardFunction()"><span class="glyphicon glyphicon-cog" aria-hidden="true"></span> Dashboard</button>
                     <button class="list-group-item" onclick="topUpPanelFunction()"><span class="glyphicon glyphicon-euro" aria-hidden="true"></span> Top Up Balance</button>
                     <button class="list-group-item" onclick="transactionHistoryPanelFunction()"><span class="glyphicon glyphicon-bookmark" aria-hidden="true"></span> Transaction History</button>
+                    <button class="list-group-item" onclick="updateinformationFunction()"><span class="glyphicon glyphicon-user" aria-hidden="true"></span> Update Information</button>
                 </div>
             </div>
             <div class="col-md-9">
@@ -160,7 +161,6 @@
                         </form>
                     </div>
                 </div>
-
                 <div class="panel panel-default" id="transactionHistoryPanel" style="display:none;">
                     <div class="panel-heading" style="background-color:  #337ab7;">
                         <h3 class="panel-title">Transaction History</h3>
@@ -186,6 +186,45 @@
                             <th>(Total Price)</th>
                             </tbody>
                         </table>
+                    </div>
+                </div>
+                <div class="panel panel-default" id="updateInformation" style="display:none;">
+                    <div class="panel-heading" style="background-color:  #337ab7;">
+                        <h3 class="panel-title">Update Personal Information</h3>
+                    </div>
+                    <div class="panel-body">
+                        <form action="" method="post" class="form-horizontal" onsubmit="return validate()">
+                            <div class="form-group">
+                                <div class="col-md-6">
+                                    <label>First Name</label>
+                                    <input type="text" class="form-control" name="firstNameUpdate" required minlength="3">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-md-6">
+                                    <label>Last Name</label>
+                                    <input type="text" class="form-control" name="lastNameUpdate" required minlength="3">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-md-6">
+                                    <label>Date of Birth</label>
+                                    <input type="date" class="form-control" name="dobUpdate" id="dobUpdate" required>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-md-6">
+                                    <label>Phone Number</label>
+                                    <input type="text" class="form-control" name="phoneNumberUpdate" required minlength="10" maxlength="12">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-md-4">
+                                    <input class="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
+                                    <button type="submit" class="btn btn-primary">Update Information</button>
+                                </div>
+                            </div>
+                        </form>
                     </div>
                 </div>
             </div>
