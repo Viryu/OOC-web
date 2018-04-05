@@ -6,19 +6,16 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import spring.webapp.database.entity.BalanceTopUpRecord;
+import org.springframework.web.context.WebApplicationContext;
 import spring.webapp.database.entity.User;
-import spring.webapp.database.entity.UserBalance;
 import spring.webapp.database.entity.UserInfo;
 import spring.webapp.database.repository.BalanceTopUpRecordRepository;
 import spring.webapp.database.repository.UserBalanceRepository;
 import spring.webapp.database.repository.UserInfoRepository;
 import spring.webapp.database.repository.UserRepository;
+import spring.webapp.payment.Balance;
 
 import javax.servlet.http.HttpServletRequest;
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 
 @Controller
 public class UserController {
@@ -30,6 +27,8 @@ public class UserController {
     UserBalanceRepository ubr;
     @Autowired
     BalanceTopUpRecordRepository btur;
+    @Autowired
+    WebApplicationContext context;
 
     @GetMapping("/user")
     public String userpage(Authentication auth, HttpServletRequest request) {
@@ -41,19 +40,15 @@ public class UserController {
         return "userpage";
     }
     @PostMapping("/inputbalance")
-    public String balanceinput(HttpServletRequest request,Authentication auth,
-            @RequestParam(value="inputamount")String balance){
-        String time = getCurrentTime();
-        Integer userID = ur.findOneByEmail(auth.getName()).getId();
-        float balancef = Float.parseFloat(balance);
-        float newamount = ubr.findUserBalanceByUserid(userID).getBalance() + balancef;
-        ubr.save(new UserBalance(userID,newamount));
-        btur.save(new BalanceTopUpRecord(userID,balancef,time));
+    public String balanceinput(HttpServletRequest request,
+            @RequestParam(value="inputamount")String amount){
+        Balance balance = (Balance) context.getBean("balance");
+        balance.topUp(Float.parseFloat(amount));
         return "redirect:/user";
     }
 
     @PostMapping("/user=updateinfo")
-    public String registerUser(Authentication auth,
+    public String updateInfo (Authentication auth,
                                @RequestParam(value = "firstNameUpdate") String firstName,
                                @RequestParam(value = "lastNameUpdate") String lastName,
                                @RequestParam(value = "dobUpdate") String dob,
@@ -76,9 +71,5 @@ public class UserController {
     }
 
 
-    public String getCurrentTime(){
-        DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd");
-        Date date = new Date();
-        return dateFormat.format(date);
-    }
+
 }

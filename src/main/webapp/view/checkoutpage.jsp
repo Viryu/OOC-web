@@ -126,7 +126,7 @@
                     <h4 class="modal-title">Top-Up Balance</h4>
                 </div>
                 <div class="modal-body">
-                    <form action="/inputbalance" method="post" class="form-horizontal">
+                    <form action="/checkout=topup" method="post" class="form-horizontal">
                         <div class="form-group">
                             <div class="col-md-12">
                                 <label>Top-Up Method</label>
