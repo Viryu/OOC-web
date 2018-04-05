@@ -24,23 +24,28 @@ public class BookingController {
     public String booking() {
             return "bookingpage";
         }
-        @PostMapping("/ticket")
-        public String showticket(HttpServletRequest request, Model model,
-                                 @RequestParam(value="passengeramount")String passengeramount,
-                                 @RequestParam(value="startdestination")String startdestination,
-                                 @RequestParam(value="enddestination")String enddestination,
-                                 @RequestParam(value="departuredate")String departuredate){
-            FlightDetailSpecification spec1 = new FlightDetailSpecification(new SearchCriteria("seatleft", ">=", passengeramount));
-            FlightDetailSpecification spec2 = new FlightDetailSpecification(new SearchCriteria("startdestination", ":", startdestination));
-            FlightDetailSpecification spec3 = new FlightDetailSpecification(new SearchCriteria("enddestination", ":", enddestination));
-            FlightDetailSpecification spec4 = new FlightDetailSpecification(new SearchCriteria("departuredate", ":", departuredate));
-            List<FlightDetail> flighttickets =
-                    fdr.findAll(Specifications.where(spec1).and(spec2).and(spec3).and(spec4));
-//            if (flighttickets != null) System.out.println(flighttickets.get(0).getAirline());
-            request.getSession().setAttribute("flighttickets",flighttickets);
-            model.addAttribute("flightid");
-            model.addAttribute("passengeramount",passengeramount);
-            return "ticketview";
-        }
 
+    @PostMapping("/ticket")
+    public String showticket(HttpServletRequest request, Model model,
+                             @RequestParam(value="passengeramount")String passengeramount,
+                             @RequestParam(value="startdestination")String startdestination,
+                             @RequestParam(value="enddestination")String enddestination,
+                             @RequestParam(value="departuredate")String departuredate){
+        FlightDetailSpecification spec1 = new FlightDetailSpecification(new SearchCriteria("seatleft", ">=", passengeramount));
+        FlightDetailSpecification spec2 = new FlightDetailSpecification(new SearchCriteria("startdestination", ":", startdestination));
+        FlightDetailSpecification spec3 = new FlightDetailSpecification(new SearchCriteria("enddestination", ":", enddestination));
+        FlightDetailSpecification spec4 = new FlightDetailSpecification(new SearchCriteria("departuredate", ":", departuredate));
+        List<FlightDetail> flightTickets = fdr.findAll(Specifications.where(spec1).and(spec2).and(spec3).and(spec4));
+//            if (flightTickets != null) System.out.println(flightTickets.get(0).getAirline());
+        updateAllFlightsPrice(flightTickets, Integer.parseInt(passengeramount));
+        request.getSession().setAttribute("flighttickets", flightTickets);
+        model.addAttribute("flightid");
+        model.addAttribute("passengeramount",passengeramount);
+        return "ticketview";
+    }
+
+    private void updateAllFlightsPrice (List<FlightDetail> flightTickets, int passengerAmount) {
+        if (passengerAmount == 1) return;
+        for (FlightDetail flight : flightTickets) flight.setPrice(flight.getPrice() * passengerAmount);
+    }
 }
