@@ -42,7 +42,7 @@ public class UserController {
         float newamount = ubr.findUserBalanceByUserid(userID).getBalance() + balancef;
         ubr.save(new UserBalance(userID,newamount));
         btur.save(new BalanceTopUpRecord(userID,balancef,time));
-        return "userpage";
+        return "redirect:/user";
     }
 
     public String getCurrentTime(){
