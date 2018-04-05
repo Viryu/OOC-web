@@ -35,7 +35,7 @@
             </ul>
 
             <ul class="nav navbar-nav navbar-right">
-                <li class="active"><a href="index.html">Welcome, Moderator</a></li>
+                <li class="active"><a href="/user">Welcome, Moderator</a></li>
                 <sec:authorize access="isAuthenticated()">
                     <li>
                         <form action="/logout" id="logout" method="post">
