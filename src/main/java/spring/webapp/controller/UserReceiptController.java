@@ -20,7 +20,9 @@ import spring.webapp.specification.TransactionRecordSpecification;
 import javax.servlet.http.HttpServletRequest;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
 
 @Controller
@@ -38,11 +40,22 @@ public class UserReceiptController {
         Date date = new Date();
         TransactionRecordSpecification spec1 = new TransactionRecordSpecification(new SearchCriteria("userid", ":", userID.toString()));
         TransactionRecordSpecification spec2 = new TransactionRecordSpecification(new SearchCriteria("transactiondate", ":",df.format(date)));
-        request.getSession().setAttribute("flight",tr.findAll(spec1));
+        // TODO: Breakdown TransactionRecord to smaller tables
+        List<TransactionRecord> trRecords = tr.findAll(spec1);
+        List<TransactionRecord> uniqueTrRecords = transactionListOnlyUniqueBookingID(trRecords);
+        request.getSession().setAttribute("flight",uniqueTrRecords);
         model.addAttribute("bookingcode");
         model.addAttribute("flightno");
         return "userreceipt";
     }
+
+    // This function is a workaround for the current implementation of how TransactionRecord table work
+    private List<TransactionRecord> transactionListOnlyUniqueBookingID (List<TransactionRecord> trList) {
+        HashMap<String, TransactionRecord> trMap =  new HashMap<>();
+        for (TransactionRecord tr : trList) trMap.putIfAbsent(tr.getBookingcode(), tr);
+        return new ArrayList(trMap.values());
+    }
+
     @PostMapping("/receiptdetail")
     public String toreceiptdetail(Authentication auth, HttpServletRequest request, Model model,
                                   @RequestParam(value="bookingcode") String bookingcode){

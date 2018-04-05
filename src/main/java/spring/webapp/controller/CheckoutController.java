@@ -86,7 +86,7 @@ public class CheckoutController {
             }
             userbalance.save(new UserBalance(userID,newbalance));
             fdr.save(flightDetail);
-            return "redirect:/";
+            return "redirect:/userReceipt";
         }
     }
     ArrayList<String> passengernames = new ArrayList<>() ;

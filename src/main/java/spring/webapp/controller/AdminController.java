@@ -89,7 +89,7 @@ public class AdminController {
         }
         else {
             fdr.save(flightDetail);
-            return "adminpage";
+            return "redirect:/adminpage";
         }
 
     }
