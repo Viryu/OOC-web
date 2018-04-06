@@ -67,18 +67,34 @@
                         <input type="text" class="form-control" id="idnumber${loop.index}" name="idnumber[]" placeholder="Identification Number" >
                     </div>
                 </div>
-                <%--<div class="col-sm-2">--%>
-                    <%--<button type="button" class="btn btn-primary" onclick="addPassenger()" id="addPassengerBtn">Add New Passenger</button>--%>
-                <%--</div>--%>
                 </c:forEach>
                 <div class="row">
                     <div class="col-sm-2">
                         <input class="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
-                        <button type="submit" class="btn btn-primary">Purchase Ticket</button>
+                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#confirmModal">Purchase Ticket</button>
                     </div>
                 </div>
-            </form>
         </div>
+    </div>
+    <div id="confirmModal" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">Confirm Booking</h4>
+                </div>
+                <div class="modal-body">
+                    Are you sure everything is correct?
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-primary">Confirm Order</button>
+                    <button type="button" class="btn btn-primary" data-dismiss="modal">Cancel Top Up</button>
+                </div>
+                </form>
+            </div>
+
+        </div>
+
     </div>
     <div class="panel panel-default">
         <div class="panel-body">
